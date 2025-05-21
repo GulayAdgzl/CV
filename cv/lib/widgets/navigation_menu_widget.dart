@@ -1,6 +1,6 @@
+import 'package:cv/utils/AppColors.dart';
+import 'package:cv/widgets/svg_loader.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterprofile/utils/AppColors.dart';
-import 'package:flutterprofile/widgets/svg_loader.dart';
 
 Widget NavigationMenu(icon, {isSelected = false, height, width, onClick}) {
   return InkWell(
