@@ -1,20 +1,27 @@
+import 'package:cv/utils/AppColors.dart';
+import 'package:cv/utils/AppIcons.dart';
+import 'package:cv/widgets/navigation_menu_widget.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+
+import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'CV App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.indigo,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage(),
@@ -22,24 +29,25 @@ class MyApp extends StatelessWidget {
   }
 }
 
-final GlobalKey<ScaffoldState> scaffoldkey = new GlobalKey<ScaffoldState>();
+final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
 class MyHomePage extends StatefulWidget {
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
-  TabController _tabController;
+  late TabController _tabController;
   int selectedMenuIndex = 0;
-  final databaseRef = FirebaseDatabase.instance.reference().child("Portfolio");
+
+  final DatabaseReference databaseRef =
+      FirebaseDatabase.instance.ref("Portfolio");
+
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
-    _tabController = new TabController(length: 5, vsync: this);
-
+    _tabController = TabController(length: 5, vsync: this);
     _tabController.addListener(() {
       setState(() {
         selectedMenuIndex = _tabController.index;
@@ -48,14 +56,20 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   }
 
   @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     double iconSize = 20.0;
     return SafeArea(
       child: Scaffold(
-        key: scaffoldkey,
-        backgroundColor: backgroundLight,
+        key: scaffoldKey,
+        backgroundColor: Colors.white, // veya backgroundLight
         body: Container(
-          margin: EdgeInsets.only(top: 10, left: 10),
+          margin: const EdgeInsets.only(top: 10, left: 10),
           child: Row(
             children: <Widget>[
               Container(
@@ -66,58 +80,59 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                     Container(
                       width: 45,
                       height: 45,
-                      margin: EdgeInsets.only(bottom: 20),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                      ),
-                      child: Image.asset("assets/avtar1.png"),
+                      margin: const EdgeInsets.only(bottom: 20),
+                      decoration: const BoxDecoration(shape: BoxShape.circle),
+                      child: Image.asset("assets/pp.png"),
                     ),
-                    NavigationMenu(navHome,
-                        height: iconSize,
-                        width: iconSize,
-                        isSelected: selectedMenuIndex == 0, onClick: () {
-                      _tabController.animateTo(0);
-                    }),
-                    NavigationMenu(navTime,
-                        height: iconSize,
-                        width: iconSize,
-                        isSelected: selectedMenuIndex == 1, onClick: () {
-                      _tabController.animateTo(1);
-                    }),
-                    NavigationMenu(navPortfolio,
-                        height: iconSize,
-                        width: iconSize,
-                        isSelected: selectedMenuIndex == 2, onClick: () {
-                      _tabController.animateTo(2);
-                    }),
-                    NavigationMenu(navGroup,
-                        height: iconSize,
-                        width: iconSize,
-                        isSelected: selectedMenuIndex == 3, onClick: () {
-                      _tabController.animateTo(3);
-                    }),
-                    NavigationMenu(navContact,
-                        height: iconSize,
-                        width: iconSize,
-                        isSelected: selectedMenuIndex == 4, onClick: () {
-                      _tabController.animateTo(4);
-                    }),
+                    NavigationMenu(
+                      navHome,
+                      height: iconSize,
+                      width: iconSize,
+                      isSelected: selectedMenuIndex == 0,
+                      onClick: () => _tabController.animateTo(0),
+                    ),
+                    NavigationMenu(
+                      navTime,
+                      height: iconSize,
+                      width: iconSize,
+                      isSelected: selectedMenuIndex == 1,
+                      onClick: () => _tabController.animateTo(1),
+                    ),
+                    NavigationMenu(
+                      navPortfolio,
+                      height: iconSize,
+                      width: iconSize,
+                      isSelected: selectedMenuIndex == 2,
+                      onClick: () => _tabController.animateTo(2),
+                    ),
+                    NavigationMenu(
+                      navGroup,
+                      height: iconSize,
+                      width: iconSize,
+                      isSelected: selectedMenuIndex == 3,
+                      onClick: () => _tabController.animateTo(3),
+                    ),
+                    NavigationMenu(
+                      navContact,
+                      height: iconSize,
+                      width: iconSize,
+                      isSelected: selectedMenuIndex == 4,
+                      onClick: () => _tabController.animateTo(4),
+                    ),
                   ],
                 ),
               ),
               Flexible(
                 fit: FlexFit.tight,
-                child: Container(
-                  child: TabBarView(
-                    controller: _tabController,
-                    children: [
-                      HomePage(databaseRef),
-                      ExperiencePage(),
-                      PortfolioPage(),
-                      TeamPage(),
-                      ContactPage(),
-                    ],
-                  ),
+                child: TabBarView(
+                  controller: _tabController,
+                  children: [
+                    HomePage(databaseRef),
+                    ExperiencePage(),
+                    PortfolioPage(),
+                    TeamPage(),
+                    ContactPage(),
+                  ],
                 ),
               ),
             ],
