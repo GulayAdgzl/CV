@@ -1,3 +1,9 @@
+import 'package:cv/pages/contact_page.dart';
+import 'package:cv/pages/education_page.dart';
+import 'package:cv/pages/experience_page.dart';
+import 'package:cv/pages/profile_page.dart';
+import 'package:cv/pages/project_page.dart';
+import 'package:cv/pages/skills_page.dart';
 import 'package:cv/utils/AppColors.dart';
 import 'package:cv/utils/AppIcons.dart';
 import 'package:cv/widgets/navigation_menu_widget.dart';
@@ -127,11 +133,12 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                 child: TabBarView(
                   controller: _tabController,
                   children: [
-                    HomePage(databaseRef),
+                    ProfilePage(databaseRef),
                     ExperiencePage(),
-                    PortfolioPage(),
-                    TeamPage(),
+                    ProjectPage(),
+                    SkillsPage(),
                     ContactPage(),
+                    EducationPage()
                   ],
                 ),
               ),
