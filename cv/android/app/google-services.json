@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "380383353541",
+    "project_id": "mycv-b5010",
+    "storage_bucket": "mycv-b5010.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:380383353541:android:b36bc39b7e19512bbe6eac",
+        "android_client_info": {
+          "package_name": "com.example.cv"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhys0eXQyTxDvGHjHnt_RBPQ43A7s45VI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
