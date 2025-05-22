@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 
 class ProfilePage extends StatefulWidget {
-  const ProfilePage({super.key, required this.databaseRef});
+  const ProfilePage(this.databaseRef);
 
   final DatabaseReference databaseRef;
 
