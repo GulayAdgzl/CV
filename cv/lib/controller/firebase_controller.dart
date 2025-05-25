@@ -25,4 +25,12 @@ class FirebaseController {
     final data = snapshot.value as Map?;
     return data?['description'] ?? 'No description found';
   }
+
+  Query getExperience() {
+    return _experienceRef;
+  }
+
+  Query getPortfolio() {
+    return _portfolioRef;
+  }
 }

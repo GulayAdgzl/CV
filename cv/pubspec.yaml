@@ -41,6 +41,7 @@ dependencies:
   cached_network_image: ^3.4.1
   url_launcher: ^6.3.1
   flutter_animate: ^4.5.2
+  timeline_tile: ^2.0.0
 
 dev_dependencies:
   flutter_test:
