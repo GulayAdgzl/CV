@@ -1,14 +1,6 @@
 import 'package:cv/controller/firebase_controller.dart';
-import 'package:cv/utils/common_string.dart';
-import 'package:cv/utils/text_style.dart';
-import 'package:cv/widgets/app_shimmer_effect.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
-import 'package:firebase_database/firebase_database.dart';
-
-import 'package:flutter/material.dart';
-
 import 'package:shimmer/shimmer.dart'; // AppShimmer yerine Shimmer paketi
 import 'package:flutter_animate/flutter_animate.dart'; // FadeIn için
 
