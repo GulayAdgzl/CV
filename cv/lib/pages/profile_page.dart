@@ -31,7 +31,7 @@ class _ProfilePageState extends State<ProfilePage> {
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
-          colors: [Color(0xFF5B86E5), Color(0xFF36D1DC)],
+          colors: [Color(0xFFE3F2FD), Color(0xFFFFFFFF)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
