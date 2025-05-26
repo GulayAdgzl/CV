@@ -1,16 +1,9 @@
 import 'package:cv/controller/firebase_controller.dart';
-import 'package:cv/utils/AppColors.dart';
-import 'package:cv/utils/text_style.dart';
 import 'package:flutter/material.dart';
 
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
-import 'package:flutter/material.dart';
-
-import 'package:flutter/material.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter_animate/flutter_animate.dart'; // animasyon için
-import 'package:firebase_database/ui/firebase_animated_list.dart';
 
 class ExperiencePage extends StatelessWidget {
   const ExperiencePage({super.key});
@@ -60,10 +53,20 @@ class ExperiencePage extends StatelessWidget {
                   Animation<double> animation, int index) {
                 if (snapshot.value != null) {
                   final data = snapshot.value as Map?;
-                  final title = data?['date'] ?? "Unknown Date";
+                  final date = data?['duration'] ?? "Unknown Date";
+                  final company = data?['company'] ?? "Unknown Company";
                   final description = data?['description'] ?? "No description";
 
-                  return _itemCard(title, description)
+// Description'ı madde listesine çevir
+                  final descriptionList = (description as String)
+                      .split('. ')
+                      .where((item) => item.trim().isNotEmpty)
+                      .map((item) => item.trim().endsWith('.')
+                          ? item.trim()
+                          : '${item.trim()}.')
+                      .toList();
+
+                  return _itemCard(date, company, descriptionList)
                       .animate()
                       .fadeIn(duration: 500.ms)
                       .slideY(begin: 0.2, end: 0, duration: 400.ms);
@@ -77,41 +80,97 @@ class ExperiencePage extends StatelessWidget {
     );
   }
 
-  Widget _itemCard(String title, String description) {
-    return Card(
-      elevation: 4,
-      margin: const EdgeInsets.symmetric(vertical: 10),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
+  Widget _itemCard(String date, String company, List<String> descriptionList) {
+    return StatefulBuilder(
+      builder: (context, setState) {
+        bool isExpanded = false;
+
+        int previewCount = 3;
+        List<String> visibleItems = isExpanded
+            ? descriptionList
+            : descriptionList.take(previewCount).toList();
+
+        return Card(
+          elevation: 4,
+          margin: const EdgeInsets.symmetric(vertical: 10),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Icon(Icons.calendar_month, color: Colors.grey, size: 20),
-                const SizedBox(width: 8),
+                Row(
+                  children: [
+                    const Icon(Icons.calendar_month,
+                        color: Colors.grey, size: 20),
+                    const SizedBox(width: 8),
+                    Text(
+                      date,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16,
+                        color: Colors.black87,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 6),
                 Text(
-                  title,
+                  company,
                   style: const TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 16,
-                    color: Colors.black87,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.blueAccent,
                   ),
                 ),
+                const SizedBox(height: 10),
+
+                // Description bullets
+                ...visibleItems.map((item) => Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text("• ", style: TextStyle(fontSize: 14)),
+                        Expanded(
+                          child: Text(
+                            item,
+                            style: const TextStyle(
+                              fontSize: 14,
+                              color: Colors.black87,
+                            ),
+                          ),
+                        ),
+                      ],
+                    )),
+
+                // "More"/"Less" Button
+                if (descriptionList.length > previewCount)
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: TextButton(
+                      style: TextButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          isExpanded = !isExpanded;
+                        });
+                      },
+                      child: Text(
+                        isExpanded ? "Less ▲" : "More ▼",
+                        style: const TextStyle(
+                          fontSize: 14,
+                          color: Colors.blue,
+                        ),
+                      ),
+                    ),
+                  ),
               ],
             ),
-            const SizedBox(height: 10),
-            Text(
-              description,
-              style: const TextStyle(
-                fontSize: 14,
-                color: Colors.black87,
-              ),
-            ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }
