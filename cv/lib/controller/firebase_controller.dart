@@ -26,6 +26,19 @@ class FirebaseController {
     return data?['description'] ?? 'No description found';
   }
 
+  Future<Map<String, dynamic>> getAboutInfo() async {
+    final snapshot = await _aboutRef.get();
+    final data = snapshot.value as Map?;
+    return data?.map((key, value) => MapEntry(key.toString(), value)) ?? {};
+  }
+
+  Future<List<String>> getSkills() async {
+    final ref = FirebaseDatabase.instance.ref().child("Portfolio/skills");
+    final snapshot = await ref.get();
+    final data = snapshot.value as List?;
+    return data?.map((e) => e.toString()).toList() ?? [];
+  }
+
   Query getExperience() {
     return _experienceRef;
   }

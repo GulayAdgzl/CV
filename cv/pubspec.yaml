@@ -43,6 +43,7 @@ dependencies:
   flutter_animate: ^4.5.2
   timeline_tile: ^2.0.0
   flutter_radar_chart: ^0.2.1
+  font_awesome_flutter: ^10.8.0
 
 dev_dependencies:
   flutter_test:

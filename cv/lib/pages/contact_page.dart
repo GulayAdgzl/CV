@@ -1,91 +1,133 @@
+import 'package:cv/controller/firebase_controller.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
-class ContactPage extends StatelessWidget {
-  void _launchURL(String url) async {
-    final uri = Uri.parse(url);
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri);
-    } else {
-      throw 'Could not launch $url';
-    }
+class ContactPage extends StatefulWidget {
+  const ContactPage({super.key});
+
+  @override
+  State<ContactPage> createState() => _ContactPageState();
+}
+
+class _ContactPageState extends State<ContactPage> {
+  final FirebaseController _controller = FirebaseController();
+  Map<String, dynamic>? aboutData;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadData();
+  }
+
+  Future<void> _loadData() async {
+    final data = await _controller.getAboutInfo();
+    setState(() {
+      aboutData = data;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color(0xFFE2E6FF),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(24.0),
-          child: Container(
-            padding: EdgeInsets.all(24),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(28),
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                // Avatarlar
-                Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    Positioned(
-                      top: 10,
-                      right: 0,
-                      child: CircleAvatar(
-                          radius: 20,
-                          backgroundImage: AssetImage('assets/pp.png')),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 20),
-                Text("Contact Me",
-                    style:
-                        TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                GestureDetector(
-                  onTap: () =>
-                      _launchURL("https://linkedin.com/in/gülay-adıgüzel"),
-                  child: Text("View team",
-                      style: TextStyle(decoration: TextDecoration.underline)),
-                ),
-                SizedBox(height: 24),
+    if (aboutData == null) {
+      return const Scaffold(body: Center(child: CircularProgressIndicator()));
+    }
 
-                // İkonlar
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    _iconButton(
-                        Icons.phone, () => _launchURL("tel:+905551112233")),
-                    _iconButton(
-                        Icons.message, () => _launchURL("sms:+905551112233")),
-                    _iconButton(
-                        Icons.video_call, () => _launchURL("https://zoom.us")),
-                    _iconButton(Icons.email,
-                        () => _launchURL("mailto:glyadgzl@hotmail.com")),
-                  ],
-                ),
-              ],
-            ),
+    return Scaffold(
+      backgroundColor: const Color(0xFF0F172A),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            children: [
+              CircleAvatar(
+                radius: 50,
+                backgroundImage:
+                    CachedNetworkImageProvider(aboutData!['profile_image']),
+              ),
+              const SizedBox(height: 16),
+              Text(
+                aboutData!['name'],
+                style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold),
+              ),
+              Text(
+                aboutData!['designation'],
+                style: const TextStyle(color: Colors.grey, fontSize: 16),
+              ),
+              const SizedBox(height: 10),
+              Text(
+                aboutData!['description'],
+                textAlign: TextAlign.center,
+                style: const TextStyle(color: Colors.white70),
+              ),
+              const SizedBox(height: 20),
+              InfoCard(icon: Icons.email, text: aboutData!['email']),
+              InfoCard(icon: Icons.phone, text: aboutData!['phone']),
+              InfoCard(icon: Icons.location_on, text: aboutData!['location']),
+              SocialCard(
+                icon: FontAwesomeIcons.github,
+                label: "GitHub",
+                url: aboutData!['github'],
+              ),
+              SocialCard(
+                icon: FontAwesomeIcons.linkedin,
+                label: "LinkedIn",
+                url: aboutData!['linkedin'],
+              ),
+              SocialCard(
+                icon: FontAwesomeIcons.medium,
+                label: "Medium",
+                url: aboutData!['medium'],
+              ),
+            ],
           ),
         ),
       ),
     );
   }
+}
 
-  Widget _iconButton(IconData icon, VoidCallback onPressed) {
-    return GestureDetector(
-      onTap: onPressed,
-      child: Container(
-        padding: EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          color: Color(0xFFF2F2F2),
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: Icon(icon, size: 28, color: Colors.black87),
+class InfoCard extends StatelessWidget {
+  final IconData icon;
+  final String text;
+
+  const InfoCard({super.key, required this.icon, required this.text});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      color: Colors.white12,
+      margin: const EdgeInsets.symmetric(vertical: 5),
+      child: ListTile(
+        leading: Icon(icon, color: Colors.white),
+        title: Text(text, style: const TextStyle(color: Colors.white)),
+      ),
+    );
+  }
+}
+
+class SocialCard extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final String url;
+
+  const SocialCard(
+      {super.key, required this.icon, required this.label, required this.url});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      color: Colors.white10,
+      margin: const EdgeInsets.symmetric(vertical: 5),
+      child: ListTile(
+        leading: Icon(icon, color: Colors.white),
+        title: Text(label, style: const TextStyle(color: Colors.white)),
+        subtitle: Text(url, style: const TextStyle(color: Colors.white70)),
       ),
     );
   }
