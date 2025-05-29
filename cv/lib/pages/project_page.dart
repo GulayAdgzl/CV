@@ -1,4 +1,4 @@
-import 'package:firebase_database/firebase_database.dart';
+import 'package:cv/controller/firebase_controller.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -9,31 +9,34 @@ class ProjectPage extends StatefulWidget {
 }
 
 class _ProjectPageState extends State<ProjectPage> {
-  final databaseQuery = FirebaseDatabase.instance.ref().child("projects");
+  final FirebaseController _controller = FirebaseController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Projects")),
-      backgroundColor: const Color(0xFFFFF4AC), // sarımsı arka plan
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16),
-        child: FirebaseAnimatedList(
-          query: databaseQuery,
-          scrollDirection: Axis.horizontal,
+      appBar: AppBar(
+        title: const Text("Repositories"),
+        backgroundColor: Colors.white,
+        elevation: 1,
+        foregroundColor: Colors.black,
+      ),
+      backgroundColor: const Color(0xFFF6F8FA), // GitHub açık tema rengi
+      body: FirebaseAnimatedList(
+          query: _controller.getPortfolio(),
           defaultChild: const Center(child: CircularProgressIndicator()),
           itemBuilder: (context, snapshot, animation, index) {
             final data = snapshot.value as Map<dynamic, dynamic>;
+
             return _projectCard(
               context,
-              name: data['name'] ?? 'No Name',
+              name: data['title'] ?? 'No Title',
               description: data['description'] ?? 'No Description',
-              image: data['image'] ?? '',
-              githubUrl: data['github'] ?? '',
+              githubUrl: data['link'] ?? '',
+              language: data['language'] ?? 'Unknown',
+              stars: data['stars']?.toString() ?? '0',
+              updatedAt: data['updated_at'] ?? 'Unknown',
             );
-          },
-        ),
-      ),
+          }),
     );
   }
 
@@ -41,64 +44,74 @@ class _ProjectPageState extends State<ProjectPage> {
     BuildContext context, {
     required String name,
     required String description,
-    required String image,
     required String githubUrl,
+    required String language,
+    required String stars,
+    required String updatedAt,
   }) {
-    return Container(
-      width: 300,
-      margin: const EdgeInsets.symmetric(horizontal: 12),
-      child: Card(
-        elevation: 4,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          border: Border.all(color: Colors.grey.shade300),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        padding: const EdgeInsets.all(16),
         child: Column(
-          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ClipRRect(
-              borderRadius:
-                  const BorderRadius.vertical(top: Radius.circular(16)),
-              child: Image.network(
-                image,
-                height: 180,
-                width: double.infinity,
-                fit: BoxFit.cover,
-                errorBuilder: (_, __, ___) => Container(
-                  height: 180,
-                  color: Colors.grey[300],
-                  child: const Icon(Icons.broken_image, size: 48),
-                ),
+            Text(
+              name,
+              style: const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Colors.blue,
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(12),
-              child: Column(
-                children: [
-                  Text(
-                    name,
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleMedium
-                        ?.copyWith(fontWeight: FontWeight.bold),
-                    textAlign: TextAlign.center,
+            const SizedBox(height: 8),
+            Text(
+              description,
+              style: const TextStyle(fontSize: 14, color: Colors.black87),
+            ),
+            const SizedBox(height: 12),
+
+            /// Alt bilgi çubuğu (dil, yıldız, güncelleme tarihi)
+            Row(
+              children: [
+                Container(
+                  width: 10,
+                  height: 10,
+                  margin: const EdgeInsets.only(right: 6),
+                  decoration: const BoxDecoration(
+                    color: Colors.deepPurple,
+                    shape: BoxShape.circle,
                   ),
-                  const SizedBox(height: 8),
-                  Text(
-                    description,
-                    style: Theme.of(context).textTheme.bodyMedium,
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 12),
-                  ElevatedButton(
-                    onPressed: () async {
-                      if (await canLaunchUrl(Uri.parse(githubUrl))) {
-                        await launchUrl(Uri.parse(githubUrl));
-                      }
-                    },
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.deepPurple),
-                    child: const Text("GitHub"),
-                  ),
-                ],
-              ),
+                ),
+                Text(language, style: const TextStyle(color: Colors.black54)),
+                const SizedBox(width: 16),
+                const Icon(Icons.star_border, size: 16, color: Colors.black45),
+                const SizedBox(width: 4),
+                Text(stars, style: const TextStyle(color: Colors.black54)),
+                const SizedBox(width: 16),
+                Text("Updated $updatedAt",
+                    style: const TextStyle(color: Colors.black54)),
+              ],
+            ),
+
+            const SizedBox(height: 12),
+
+            /// GitHub butonu
+            TextButton.icon(
+              onPressed: () async {
+                final uri = Uri.parse(githubUrl);
+                if (await canLaunchUrl(uri)) {
+                  await launchUrl(uri);
+                }
+              },
+              icon: const Icon(Icons.open_in_new),
+              label: const Text("View on GitHub"),
+              style: TextButton.styleFrom(foregroundColor: Colors.blue),
             ),
           ],
         ),
