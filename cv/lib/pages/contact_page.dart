@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ContactPage extends StatefulWidget {
   const ContactPage({super.key});
@@ -14,77 +15,80 @@ class ContactPage extends StatefulWidget {
 
 class _ContactPageState extends State<ContactPage> {
   final FirebaseController _controller = FirebaseController();
-  Map<String, dynamic>? aboutData;
+  Map<String, dynamic>? about;
 
   @override
   void initState() {
     super.initState();
-    _loadData();
+    _loadAboutInfo();
   }
 
-  Future<void> _loadData() async {
+  Future<void> _loadAboutInfo() async {
     final data = await _controller.getAboutInfo();
     setState(() {
-      aboutData = data;
+      about = data;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    if (aboutData == null) {
-      return const Scaffold(body: Center(child: CircularProgressIndicator()));
+    if (about == null) {
+      return const Scaffold(
+        backgroundColor: Color(0xFF0F172A),
+        body: Center(child: CircularProgressIndicator()),
+      );
     }
 
     return Scaffold(
       backgroundColor: const Color(0xFF0F172A),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            children: [
-              CircleAvatar(
-                radius: 50,
-                backgroundImage:
-                    CachedNetworkImageProvider(aboutData!['profile_image']),
-              ),
-              const SizedBox(height: 16),
-              Text(
-                aboutData!['name'],
-                style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold),
-              ),
-              Text(
-                aboutData!['designation'],
-                style: const TextStyle(color: Colors.grey, fontSize: 16),
-              ),
-              const SizedBox(height: 10),
-              Text(
-                aboutData!['description'],
-                textAlign: TextAlign.center,
-                style: const TextStyle(color: Colors.white70),
-              ),
-              const SizedBox(height: 20),
-              InfoCard(icon: Icons.email, text: aboutData!['email']),
-              InfoCard(icon: Icons.phone, text: aboutData!['phone']),
-              InfoCard(icon: Icons.location_on, text: aboutData!['location']),
-              SocialCard(
-                icon: FontAwesomeIcons.github,
-                label: "GitHub",
-                url: aboutData!['github'],
-              ),
-              SocialCard(
-                icon: FontAwesomeIcons.linkedin,
-                label: "LinkedIn",
-                url: aboutData!['linkedin'],
-              ),
-              SocialCard(
-                icon: FontAwesomeIcons.medium,
-                label: "Medium",
-                url: aboutData!['medium'],
-              ),
-            ],
+      body: Center(
+        child: Card(
+          elevation: 10,
+          color: Colors.white.withOpacity(0.1),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          margin: const EdgeInsets.all(20),
+          child: Container(
+            padding: const EdgeInsets.all(20),
+            width: 350,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                CircleAvatar(
+                  radius: 50,
+                  backgroundImage:
+                      CachedNetworkImageProvider(about!['profile_image']),
+                ),
+                const SizedBox(height: 16),
+                Text(
+                  about!['name'],
+                  style: const TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white),
+                ),
+                Text(
+                  about!['designation'],
+                  style: const TextStyle(color: Colors.white70),
+                ),
+                const Divider(color: Colors.white38, height: 30),
+                InfoTile(icon: Icons.email, text: about!['email']),
+                InfoTile(icon: Icons.location_on, text: about!['location']),
+                const SizedBox(height: 12),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    SocialIcon(
+                        icon: FontAwesomeIcons.linkedin,
+                        url: about!['linkedin']),
+                    SocialIcon(
+                        icon: FontAwesomeIcons.github, url: about!['github']),
+                    SocialIcon(
+                        icon: FontAwesomeIcons.medium, url: about!['medium']),
+                  ],
+                )
+              ],
+            ),
           ),
         ),
       ),
@@ -92,43 +96,42 @@ class _ContactPageState extends State<ContactPage> {
   }
 }
 
-class InfoCard extends StatelessWidget {
+class InfoTile extends StatelessWidget {
   final IconData icon;
   final String text;
 
-  const InfoCard({super.key, required this.icon, required this.text});
+  const InfoTile({super.key, required this.icon, required this.text});
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: Colors.white12,
-      margin: const EdgeInsets.symmetric(vertical: 5),
-      child: ListTile(
-        leading: Icon(icon, color: Colors.white),
-        title: Text(text, style: const TextStyle(color: Colors.white)),
+    return ListTile(
+      leading: Icon(icon, color: Colors.white),
+      title: Text(
+        text,
+        style: const TextStyle(color: Colors.white),
       ),
     );
   }
 }
 
-class SocialCard extends StatelessWidget {
+class SocialIcon extends StatelessWidget {
   final IconData icon;
-  final String label;
   final String url;
 
-  const SocialCard(
-      {super.key, required this.icon, required this.label, required this.url});
+  const SocialIcon({super.key, required this.icon, required this.url});
+
+  void _launchUrl() async {
+    final Uri uri = Uri.parse(url);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: Colors.white10,
-      margin: const EdgeInsets.symmetric(vertical: 5),
-      child: ListTile(
-        leading: Icon(icon, color: Colors.white),
-        title: Text(label, style: const TextStyle(color: Colors.white)),
-        subtitle: Text(url, style: const TextStyle(color: Colors.white70)),
-      ),
+    return IconButton(
+      icon: FaIcon(icon, color: Colors.white),
+      onPressed: _launchUrl,
     );
   }
 }
