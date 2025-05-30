@@ -50,7 +50,7 @@ class _SkillsPageState extends State<SkillsPage> {
     return Scaffold(
       backgroundColor: const Color(0xFF0F172A),
       appBar: AppBar(
-        title: const Text("Swipe Skills"),
+        title: const Text("Skills"),
         backgroundColor: Colors.transparent,
         foregroundColor: Colors.white,
         elevation: 0,

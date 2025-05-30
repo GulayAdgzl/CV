@@ -23,7 +23,7 @@ class _ProfilePageState extends State<ProfilePage> {
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
-          colors: [Color(0xFF5B86E5), Color(0xFF36D1DC)],
+          colors: [Color(0xFFE3F2FD), Color(0xFFFFFFFF)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
@@ -61,7 +61,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       style: const TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white),
+                          color: Color.fromARGB(255, 21, 20, 20)),
                     ).animate().fadeIn(duration: 400.ms);
                   }
                   return const SizedBox.shrink();
