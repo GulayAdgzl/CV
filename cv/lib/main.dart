@@ -3,10 +3,21 @@ import 'package:cv/firebase/firebase_init.dart';
 import 'package:cv/pages/views/home_page.dart';
 import 'package:flutter/material.dart';
 
+import 'package:provider/provider.dart';
+import 'providers/navigation_provider.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initializeFirebase();
-  runApp(const MyApp());
+
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => NavigationProvider()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
