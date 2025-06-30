@@ -28,53 +28,62 @@ class ExperiencePage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Row(
-              children: [
-                const Icon(Icons.work_outline, color: Colors.blue, size: 28),
-                const SizedBox(width: 10),
-                Text(
-                  "Professional Experience",
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.blue[900],
-                  ),
-                ),
-              ],
-            ),
+            _buildHeader(),
             const SizedBox(height: 16),
-            FirebaseAnimatedList(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              query: FirebaseController()
-                  .getExperience(), // kendi FirebaseController'ını kullan
-              itemBuilder: (_, DataSnapshot snapshot,
-                  Animation<double> animation, int index) {
-                if (snapshot.value != null) {
-                  final data = snapshot.value as Map?;
-                  final date = data?['duration'] ?? "Unknown Date";
-                  final company = data?['company'] ?? "Unknown Company";
-                  final descriptionList =
-                      (data?['description'] as List<dynamic>?)
-                              ?.map((e) => e.toString())
-                              .toList() ??
-                          ["No description available"];
-
-                  return ExperienceItemCard(
-                    date: date,
-                    company: company,
-                    descriptionList: descriptionList,
-                  )
-                      .animate()
-                      .fadeIn(duration: 500.ms)
-                      .slideY(begin: 0.2, end: 0, duration: 400.ms);
-                }
-                return const SizedBox.shrink();
-              },
-            ),
+            _ExperienceList(),
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildHeader() {
+    return Row(
+      children: [
+        const Icon(Icons.work_outline, color: Colors.blue, size: 28),
+        const SizedBox(width: 10),
+        Text(
+          "Professional Experience",
+          style: TextStyle(
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
+            color: Colors.blue[900],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _ExperienceList extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return FirebaseAnimatedList(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      query: FirebaseController().getExperience(),
+      itemBuilder:
+          (_, DataSnapshot snapshot, Animation<double> animation, int index) {
+        if (snapshot.value != null) {
+          final data = snapshot.value as Map?;
+          final date = data?['duration'] ?? "Unknown Date";
+          final company = data?['company'] ?? "Unknown Company";
+          final descriptionList = (data?['description'] as List<dynamic>?)
+                  ?.map((e) => e.toString())
+                  .toList() ??
+              ["No description available"];
+
+          return ExperienceItemCard(
+            date: date,
+            company: company,
+            descriptionList: descriptionList,
+          )
+              .animate()
+              .fadeIn(duration: 500.ms)
+              .slideY(begin: 0.2, end: 0, duration: 400.ms);
+        }
+        return const SizedBox.shrink();
+      },
     );
   }
 }
