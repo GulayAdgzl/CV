@@ -4,12 +4,12 @@ import 'package:cv/pages/profile_page.dart';
 import 'package:cv/pages/project_page.dart';
 import 'package:cv/pages/resume_generator_page.dart';
 import 'package:cv/pages/skills_page.dart';
+import 'package:cv/providers/navigation_provider.dart';
 import 'package:cv/utils/AppIcons.dart';
 import 'package:cv/widgets/navigation_menu_widget.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-
-final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -17,37 +17,33 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
-  late TabController _tabController;
-  int selectedMenuIndex = 0;
-
   final DatabaseReference databaseRef =
       FirebaseDatabase.instance.ref("Portfolio");
 
   @override
   void initState() {
     super.initState();
-
-    _tabController = TabController(length: 6, vsync: this);
-    _tabController.addListener(() {
-      setState(() {
-        selectedMenuIndex = _tabController.index;
-      });
-    });
+    Provider.of<NavigationProvider>(context, listen: false)
+        .initController(this);
   }
 
   @override
   void dispose() {
-    _tabController.dispose();
+    Provider.of<NavigationProvider>(context, listen: false).disposeController();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    final navigationProvider = Provider.of<NavigationProvider>(context);
+    final tabController = navigationProvider.tabController;
+    final selectedIndex = navigationProvider.selectedIndex;
+
     double iconSize = 20.0;
+
     return SafeArea(
       child: Scaffold(
-        key: scaffoldKey,
-        backgroundColor: Colors.white, // veya backgroundLight
+        backgroundColor: Colors.white,
         body: Container(
           margin: const EdgeInsets.only(top: 10, left: 10),
           child: Row(
@@ -68,36 +64,36 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       navProfile,
                       height: iconSize,
                       width: iconSize,
-                      isSelected: selectedMenuIndex == 0,
-                      onClick: () => _tabController.animateTo(0),
+                      isSelected: selectedIndex == 0,
+                      onClick: () => navigationProvider.changeIndex(0),
                     ),
                     NavigationMenu(
                       navExperince,
                       height: iconSize,
                       width: iconSize,
-                      isSelected: selectedMenuIndex == 1,
-                      onClick: () => _tabController.animateTo(1),
+                      isSelected: selectedIndex == 1,
+                      onClick: () => navigationProvider.changeIndex(1),
                     ),
                     NavigationMenu(
                       navProject,
                       height: iconSize,
                       width: iconSize,
-                      isSelected: selectedMenuIndex == 2,
-                      onClick: () => _tabController.animateTo(2),
+                      isSelected: selectedIndex == 2,
+                      onClick: () => navigationProvider.changeIndex(2),
                     ),
                     NavigationMenu(
                       navContact,
                       height: iconSize,
                       width: iconSize,
-                      isSelected: selectedMenuIndex == 3,
-                      onClick: () => _tabController.animateTo(3),
+                      isSelected: selectedIndex == 3,
+                      onClick: () => navigationProvider.changeIndex(3),
                     ),
                     NavigationMenu(
                       navEducation,
                       height: iconSize,
                       width: iconSize,
-                      isSelected: selectedMenuIndex == 4,
-                      onClick: () => _tabController.animateTo(4),
+                      isSelected: selectedIndex == 4,
+                      onClick: () => navigationProvider.changeIndex(4),
                     ),
                   ],
                 ),
@@ -105,11 +101,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               Flexible(
                 fit: FlexFit.tight,
                 child: TabBarView(
-                  controller: _tabController,
+                  controller: tabController,
                   children: [
-                    ProfilePage(
-                      databaseRef,
-                    ),
+                    ProfilePage(databaseRef),
                     ExperiencePage(),
                     ProjectPage(),
                     SkillsPage(),
