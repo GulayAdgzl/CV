@@ -1,5 +1,5 @@
 import 'package:cv/pages/contact_page.dart';
-import 'package:cv/pages/education_page.dart';
+import 'package:cv/pages/resume_generator_page.dart';
 import 'package:cv/pages/experience_page.dart';
 import 'package:cv/pages/profile_page.dart';
 import 'package:cv/pages/project_page.dart';
@@ -141,7 +141,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                     ProjectPage(),
                     SkillsPage(),
                     ContactPage(),
-                    EducationPage()
+                    ResumeGeneratorPage()
                   ],
                 ),
               ),

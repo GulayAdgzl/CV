@@ -20,10 +20,10 @@ class _ContactPageState extends State<ContactPage> {
   @override
   void initState() {
     super.initState();
-    _loadAboutInfo();
+    _fetchAboutInfo();
   }
 
-  Future<void> _loadAboutInfo() async {
+  Future<void> _fetchAboutInfo() async {
     final data = await _controller.getAboutInfo();
     setState(() {
       about = data;
@@ -32,64 +32,65 @@ class _ContactPageState extends State<ContactPage> {
 
   @override
   Widget build(BuildContext context) {
-    if (about == null) {
-      return const Scaffold(
-        backgroundColor: Color(0xFF0F172A),
-        body: Center(child: CircularProgressIndicator()),
-      );
-    }
-
     return Scaffold(
       backgroundColor: const Color(0xFF0F172A),
       body: Center(
-        child: Card(
-          elevation: 10,
-          color: Colors.white.withOpacity(0.1),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          margin: const EdgeInsets.all(20),
-          child: Container(
-            padding: const EdgeInsets.all(20),
-            width: 350,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                CircleAvatar(
-                  radius: 50,
-                  backgroundImage:
-                      CachedNetworkImageProvider(about!['profile_image']),
-                ),
-                const SizedBox(height: 16),
-                Text(
-                  about!['name'],
-                  style: const TextStyle(
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white),
-                ),
-                Text(
-                  about!['designation'],
-                  style: const TextStyle(color: Colors.white70),
-                ),
-                const Divider(color: Colors.white38, height: 30),
-                InfoTile(icon: Icons.email, text: about!['email']),
-                InfoTile(icon: Icons.location_on, text: about!['location']),
-                const SizedBox(height: 12),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    SocialIcon(
-                        icon: FontAwesomeIcons.linkedin,
-                        url: about!['linkedin']),
-                    SocialIcon(
-                        icon: FontAwesomeIcons.github, url: about!['github']),
-                    SocialIcon(
-                        icon: FontAwesomeIcons.medium, url: about!['medium']),
-                  ],
-                )
-              ],
+        child: about == null
+            ? const CircularProgressIndicator()
+            : ContactCard(about: about!),
+      ),
+    );
+  }
+}
+
+class ContactCard extends StatelessWidget {
+  final Map<String, dynamic> about;
+
+  const ContactCard({super.key, required this.about});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 10,
+      color: Colors.white.withOpacity(0.1),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      margin: const EdgeInsets.all(20),
+      child: Container(
+        padding: const EdgeInsets.all(20),
+        width: 350,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const CircleAvatar(
+              radius: 50,
+              backgroundImage: AssetImage("assets/avatar.png"),
             ),
-          ),
+            const SizedBox(height: 16),
+            Text(
+              about['name'],
+              style: const TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
+            ),
+            Text(
+              about['designation'],
+              style: const TextStyle(color: Colors.white70),
+            ),
+            const Divider(color: Colors.white38, height: 30),
+            InfoTile(icon: Icons.email, text: about['email']),
+            InfoTile(icon: Icons.location_on, text: about['location']),
+            const SizedBox(height: 12),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                SocialIcon(
+                    icon: FontAwesomeIcons.linkedin, url: about['linkedin']),
+                SocialIcon(icon: FontAwesomeIcons.github, url: about['github']),
+                SocialIcon(icon: FontAwesomeIcons.medium, url: about['medium']),
+              ],
+            )
+          ],
         ),
       ),
     );
@@ -120,7 +121,7 @@ class SocialIcon extends StatelessWidget {
 
   const SocialIcon({super.key, required this.icon, required this.url});
 
-  void _launchUrl() async {
+  Future<void> _launchUrl() async {
     final Uri uri = Uri.parse(url);
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri, mode: LaunchMode.externalApplication);
