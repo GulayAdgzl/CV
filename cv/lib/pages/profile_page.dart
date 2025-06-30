@@ -34,95 +34,95 @@ class _ProfilePageState extends State<ProfilePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              // Avatar
-              CircleAvatar(
+              const CircleAvatar(
                 radius: 50,
                 backgroundImage: AssetImage("assets/pp.png"),
               ),
-
               const SizedBox(height: 20),
-
-              // Full Name
-              FutureBuilder<String>(
+              _ProfileFutureText(
                 future: _firebaseController.getFullName(),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Shimmer.fromColors(
-                      baseColor: Colors.white,
-                      highlightColor: Colors.grey[300]!,
-                      child: Text("======= ======",
-                          style: TextStyle(
-                              fontSize: 22, fontWeight: FontWeight.bold)),
-                    );
-                  }
-                  if (snapshot.hasData) {
-                    return Text(
-                      snapshot.data!,
-                      style: const TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromARGB(255, 21, 20, 20)),
-                    ).animate().fadeIn(duration: 400.ms);
-                  }
-                  return const SizedBox.shrink();
-                },
+                shimmerText: "======= ======",
+                textStyle: const TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromARGB(255, 21, 20, 20),
+                ),
+                shimmerStyle: const TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                ),
+                fadeDuration: 400,
               ),
-
               const SizedBox(height: 10),
-
-              // Designation
-              FutureBuilder<String>(
+              _ProfileFutureText(
                 future: _firebaseController.getDesignation(),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Shimmer.fromColors(
-                      baseColor: Colors.white,
-                      highlightColor: Colors.grey[300]!,
-                      child: Text("==============",
-                          style: TextStyle(fontSize: 18)),
-                    );
-                  }
-                  if (snapshot.hasData) {
-                    return Text(
-                      snapshot.data!,
-                      style:
-                          const TextStyle(fontSize: 18, color: Colors.white70),
-                    ).animate().fadeIn(duration: 500.ms);
-                  }
-                  return const SizedBox.shrink();
-                },
+                shimmerText: "==============",
+                textStyle: const TextStyle(
+                  fontSize: 18,
+                  color: Colors.white70,
+                ),
+                shimmerStyle: const TextStyle(fontSize: 18),
+                fadeDuration: 500,
               ),
-
               const SizedBox(height: 20),
-
-              // Description
-              FutureBuilder<String>(
+              _ProfileFutureText(
                 future: _firebaseController.getDescription(),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Shimmer.fromColors(
-                      baseColor: Colors.white,
-                      highlightColor: Colors.grey[300]!,
-                      child: Text("Loading description...",
-                          style: TextStyle(fontSize: 16)),
-                    );
-                  }
-                  if (snapshot.hasData) {
-                    return Text(
-                      snapshot.data!,
-                      style: const TextStyle(fontSize: 16, color: Colors.white),
-                      textAlign: TextAlign.center,
-                    ).animate().fadeIn(duration: 500.ms);
-                  }
-                  return const SizedBox.shrink();
-                },
+                shimmerText: "Loading description...",
+                textStyle: const TextStyle(
+                  fontSize: 16,
+                  color: Colors.white,
+                ),
+                shimmerStyle: const TextStyle(fontSize: 16),
+                fadeDuration: 500,
+                textAlign: TextAlign.center,
               ),
-
               const SizedBox(height: 30),
             ],
           ),
         ),
       ),
+    );
+  }
+}
+
+class _ProfileFutureText extends StatelessWidget {
+  final Future<String> future;
+  final String shimmerText;
+  final TextStyle textStyle;
+  final TextStyle shimmerStyle;
+  final int fadeDuration;
+  final TextAlign? textAlign;
+
+  const _ProfileFutureText({
+    required this.future,
+    required this.shimmerText,
+    required this.textStyle,
+    required this.shimmerStyle,
+    required this.fadeDuration,
+    this.textAlign,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<String>(
+      future: future,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Shimmer.fromColors(
+            baseColor: Colors.white,
+            highlightColor: Colors.grey[300]!,
+            child: Text(shimmerText, style: shimmerStyle),
+          );
+        }
+        if (snapshot.hasData) {
+          return Text(
+            snapshot.data!,
+            style: textStyle,
+            textAlign: textAlign,
+          ).animate().fadeIn(duration: Duration(milliseconds: fadeDuration));
+        }
+        return const SizedBox.shrink();
+      },
     );
   }
 }
