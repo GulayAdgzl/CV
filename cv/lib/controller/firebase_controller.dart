@@ -7,6 +7,7 @@ class FirebaseController {
       FirebaseDatabase.instance.ref().child("Portfolio/experience");
   final DatabaseReference _portfolioRef =
       FirebaseDatabase.instance.ref().child("Portfolio/portfolio");
+  DatabaseReference get portfolio => _portfolioRef;
 
   Future<String> getFullName() async {
     final snapshot = await _aboutRef.get();

@@ -1,3 +1,4 @@
+import 'package:cv/controller/firebase_controller.dart';
 import 'package:cv/pages/contact_page.dart';
 import 'package:cv/pages/experience_page.dart';
 import 'package:cv/pages/profile_page.dart';
@@ -17,9 +18,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
-  final DatabaseReference databaseRef =
-      FirebaseDatabase.instance.ref("Portfolio");
-
   @override
   void initState() {
     super.initState();
@@ -38,6 +36,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     final navigationProvider = Provider.of<NavigationProvider>(context);
     final tabController = navigationProvider.tabController;
     final selectedIndex = navigationProvider.selectedIndex;
+
+    final firebase = Provider.of<FirebaseController>(context, listen: false);
+    final DatabaseReference databaseRef = firebase.portfolio;
 
     double iconSize = 20.0;
 
@@ -108,7 +109,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     ProjectPage(),
                     SkillsPage(),
                     ContactPage(),
-                    ResumeGeneratorPage()
+                    ResumeGeneratorPage(),
                   ],
                 ),
               ),

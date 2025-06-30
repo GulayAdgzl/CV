@@ -1,3 +1,4 @@
+import 'package:cv/controller/firebase_controller.dart';
 import 'package:cv/core/theme.dart';
 import 'package:cv/firebase/firebase_init.dart';
 import 'package:cv/pages/views/home_page.dart';
@@ -14,6 +15,7 @@ void main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => NavigationProvider()),
+        Provider(create: (_) => FirebaseController()),
       ],
       child: const MyApp(),
     ),
