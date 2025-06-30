@@ -1,3 +1,4 @@
+import 'package:cv/core/theme.dart';
 import 'package:cv/firebase/firebase_init.dart';
 import 'package:cv/pages/views/home_page.dart';
 import 'package:flutter/material.dart';
@@ -16,10 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'CV App',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.indigo,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
+      theme: appTheme,
       home: HomePage(),
     );
   }
