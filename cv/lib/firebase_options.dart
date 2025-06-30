@@ -46,6 +46,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '380383353541',
     projectId: 'mycv-b5010',
     authDomain: 'mycv-b5010.firebaseapp.com',
+    databaseURL: 'https://mycv-b5010-default-rtdb.firebaseio.com',
     storageBucket: 'mycv-b5010.firebasestorage.app',
     measurementId: 'G-LJQHMF264N',
   );
@@ -55,6 +56,7 @@ class DefaultFirebaseOptions {
     appId: '1:380383353541:android:b36bc39b7e19512bbe6eac',
     messagingSenderId: '380383353541',
     projectId: 'mycv-b5010',
+    databaseURL: 'https://mycv-b5010-default-rtdb.firebaseio.com',
     storageBucket: 'mycv-b5010.firebasestorage.app',
   );
 
@@ -63,6 +65,7 @@ class DefaultFirebaseOptions {
     appId: '1:380383353541:ios:04f07c1f1db3f96ebe6eac',
     messagingSenderId: '380383353541',
     projectId: 'mycv-b5010',
+    databaseURL: 'https://mycv-b5010-default-rtdb.firebaseio.com',
     storageBucket: 'mycv-b5010.firebasestorage.app',
     iosBundleId: 'com.example.cv',
   );
@@ -72,6 +75,7 @@ class DefaultFirebaseOptions {
     appId: '1:380383353541:ios:04f07c1f1db3f96ebe6eac',
     messagingSenderId: '380383353541',
     projectId: 'mycv-b5010',
+    databaseURL: 'https://mycv-b5010-default-rtdb.firebaseio.com',
     storageBucket: 'mycv-b5010.firebasestorage.app',
     iosBundleId: 'com.example.cv',
   );
@@ -82,7 +86,9 @@ class DefaultFirebaseOptions {
     messagingSenderId: '380383353541',
     projectId: 'mycv-b5010',
     authDomain: 'mycv-b5010.firebaseapp.com',
+    databaseURL: 'https://mycv-b5010-default-rtdb.firebaseio.com',
     storageBucket: 'mycv-b5010.firebasestorage.app',
     measurementId: 'G-TPN16QVTCJ',
   );
+
 }

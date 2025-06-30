@@ -20,35 +20,46 @@ class _ProjectPageState extends State<ProjectPage> {
         elevation: 1,
         foregroundColor: Colors.black,
       ),
-      backgroundColor: const Color(0xFFF6F8FA), // GitHub açık tema rengi
+      backgroundColor: const Color(0xFFF6F8FA),
       body: FirebaseAnimatedList(
-          query: _controller.getPortfolio(),
-          defaultChild: const Center(child: CircularProgressIndicator()),
-          itemBuilder: (context, snapshot, animation, index) {
-            final data = snapshot.value as Map<dynamic, dynamic>;
-
-            return _projectCard(
-              context,
-              name: data['title'] ?? 'No Title',
-              description: data['description'] ?? 'No Description',
-              githubUrl: data['link'] ?? '',
-              language: data['language'] ?? 'Unknown',
-              stars: data['stars']?.toString() ?? '0',
-              updatedAt: data['updated_at'] ?? 'Unknown',
-            );
-          }),
+        query: _controller.getPortfolio(),
+        defaultChild: const Center(child: CircularProgressIndicator()),
+        itemBuilder: (context, snapshot, animation, index) {
+          final data = snapshot.value as Map<dynamic, dynamic>;
+          return ProjectCard(
+            name: data['title'] ?? 'No Title',
+            description: data['description'] ?? 'No Description',
+            githubUrl: data['link'] ?? '',
+            language: data['language'] ?? 'Unknown',
+            stars: data['stars']?.toString() ?? '0',
+            updatedAt: data['updated_at'] ?? 'Unknown',
+          );
+        },
+      ),
     );
   }
+}
 
-  Widget _projectCard(
-    BuildContext context, {
-    required String name,
-    required String description,
-    required String githubUrl,
-    required String language,
-    required String stars,
-    required String updatedAt,
-  }) {
+class ProjectCard extends StatelessWidget {
+  final String name;
+  final String description;
+  final String githubUrl;
+  final String language;
+  final String stars;
+  final String updatedAt;
+
+  const ProjectCard({
+    Key? key,
+    required this.name,
+    required this.description,
+    required this.githubUrl,
+    required this.language,
+    required this.stars,
+    required this.updatedAt,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Container(
@@ -75,8 +86,6 @@ class _ProjectPageState extends State<ProjectPage> {
               style: const TextStyle(fontSize: 14, color: Colors.black87),
             ),
             const SizedBox(height: 12),
-
-            /// Alt bilgi çubuğu (dil, yıldız, güncelleme tarihi)
             Row(
               children: [
                 Container(
@@ -98,10 +107,7 @@ class _ProjectPageState extends State<ProjectPage> {
                     style: const TextStyle(color: Colors.black54)),
               ],
             ),
-
             const SizedBox(height: 12),
-
-            /// GitHub butonu
             TextButton.icon(
               onPressed: () async {
                 final uri = Uri.parse(githubUrl);

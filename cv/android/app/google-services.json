@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "380383353541",
+    "firebase_url": "https://mycv-b5010-default-rtdb.firebaseio.com",
     "project_id": "mycv-b5010",
     "storage_bucket": "mycv-b5010.firebasestorage.app"
   },
