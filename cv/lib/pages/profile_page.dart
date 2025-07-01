@@ -1,15 +1,10 @@
 import 'dart:ui';
 
 import 'package:cv/controller/firebase_controller.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart'; // AppShimmer yerine Shimmer paketi
 import 'package:flutter_animate/flutter_animate.dart'; // FadeIn için
-import 'dart:ui';
-import 'package:flutter/material.dart';
-import 'package:shimmer/shimmer.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
