@@ -1,9 +1,10 @@
+import 'package:cv/const/constant.dart';
 import 'package:cv/controller/firebase_controller.dart';
-import 'package:flutter/material.dart';
-
+import 'package:cv/core/gradient_theme_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:provider/provider.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ContactPage extends StatefulWidget {
@@ -14,8 +15,8 @@ class ContactPage extends StatefulWidget {
 }
 
 class _ContactPageState extends State<ContactPage> {
-  final FirebaseController _controller = FirebaseController();
   Map<String, dynamic>? about;
+  bool _isLoading = true;
 
   @override
   void initState() {
@@ -24,20 +25,36 @@ class _ContactPageState extends State<ContactPage> {
   }
 
   Future<void> _fetchAboutInfo() async {
-    final data = await _controller.getAboutInfo();
+    final firebaseController =
+        Provider.of<FirebaseController>(context, listen: false);
+    final data = await firebaseController.getAboutInfo();
+    if (!mounted) return;
+
     setState(() {
       about = data;
+      _isLoading = false;
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    final gradient =
+        Theme.of(context).extension<GradientTheme>()?.backgroundGradient;
+
     return Scaffold(
-      backgroundColor: const Color(0xFF0F172A),
-      body: Center(
-        child: about == null
-            ? const CircularProgressIndicator()
-            : ContactCard(about: about!),
+      backgroundColor: Colors.transparent,
+      body: Container(
+        decoration: BoxDecoration(gradient: gradient),
+        child: Center(
+          child: _isLoading
+              ? const CircularProgressIndicator()
+              : (about == null
+                  ? const Text(
+                      'No contact information available',
+                      style: TextStyle(color: Colors.white),
+                    )
+                  : ContactCard(about: about!)),
+        ),
       ),
     );
   }
@@ -47,6 +64,13 @@ class ContactCard extends StatelessWidget {
   final Map<String, dynamic> about;
 
   const ContactCard({super.key, required this.about});
+
+  Future<void> _launchCvUrl() async {
+    final Uri uri = Uri.parse(cvUrl);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,33 +87,69 @@ class ContactCard extends StatelessWidget {
           children: [
             const CircleAvatar(
               radius: 50,
-              backgroundImage: AssetImage("assets/avatar.png"),
+              backgroundImage: AssetImage("assets/pp.png"),
             ),
             const SizedBox(height: 16),
             Text(
-              about['name'],
+              about['name'] ?? '',
               style: const TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white),
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
             Text(
-              about['designation'],
+              about['designation'] ?? '',
               style: const TextStyle(color: Colors.white70),
             ),
             const Divider(color: Colors.white38, height: 30),
-            InfoTile(icon: Icons.email, text: about['email']),
-            InfoTile(icon: Icons.location_on, text: about['location']),
+            if (about['email'] != null)
+              InfoTile(icon: Icons.email, text: about['email']),
+            if (about['location'] != null)
+              InfoTile(icon: Icons.location_on, text: about['location']),
             const SizedBox(height: 12),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                SocialIcon(
-                    icon: FontAwesomeIcons.linkedin, url: about['linkedin']),
-                SocialIcon(icon: FontAwesomeIcons.github, url: about['github']),
-                SocialIcon(icon: FontAwesomeIcons.medium, url: about['medium']),
+                if (about['linkedin'] != null)
+                  SocialIcon(
+                      icon: FontAwesomeIcons.linkedin, url: about['linkedin']),
+                if (about['github'] != null)
+                  SocialIcon(
+                      icon: FontAwesomeIcons.github, url: about['github']),
+                if (about['medium'] != null)
+                  SocialIcon(
+                      icon: FontAwesomeIcons.medium, url: about['medium']),
               ],
-            )
+            ),
+
+            // QR kod alanı
+            const SizedBox(height: 24),
+            Text(
+              "Scan QR to download my CV",
+              style: TextStyle(color: Colors.white70),
+            ),
+            const SizedBox(height: 8),
+            GestureDetector(
+              onTap: _launchCvUrl,
+              child: Container(
+                color: Colors.white, // dış arka plan
+                padding: const EdgeInsets.all(8),
+                child: QrImageView(
+                  data: cvUrl,
+                  version: QrVersions.auto,
+                  size: 120.0,
+                  eyeStyle: const QrEyeStyle(
+                    eyeShape: QrEyeShape.square,
+                    color: Colors.black,
+                  ),
+                  dataModuleStyle: const QrDataModuleStyle(
+                    dataModuleShape: QrDataModuleShape.square,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
@@ -133,6 +193,7 @@ class SocialIcon extends StatelessWidget {
     return IconButton(
       icon: FaIcon(icon, color: Colors.white),
       onPressed: _launchUrl,
+      tooltip: url,
     );
   }
 }

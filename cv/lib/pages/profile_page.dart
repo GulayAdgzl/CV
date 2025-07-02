@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:cv/controller/firebase_controller.dart';
+import 'package:cv/core/gradient_theme_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart'; // AppShimmer yerine Shimmer paketi
@@ -14,68 +15,73 @@ class ProfilePage extends StatelessWidget {
     final firebase = Provider.of<FirebaseController>(context, listen: false);
     final double screenWidth = MediaQuery.of(context).size.width;
     final double paddingSize = screenWidth < 400 ? 16.0 : 24.0;
-
+    final gradient =
+        Theme.of(context).extension<GradientTheme>()!.backgroundGradient;
     return Scaffold(
-      backgroundColor: const Color(0xFFE3F2FD),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: paddingSize, vertical: 32),
-          child: Center(
-            child: _GlassContainer(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const CircleAvatar(
-                    radius: 55,
-                    backgroundImage: AssetImage("assets/pp.png"),
-                  ),
-                  const SizedBox(height: 24),
-                  _ProfileFutureText(
-                    future: firebase.getFullName(),
-                    shimmerText: "======= ======",
-                    textStyle: const TextStyle(
-                      fontSize: 26,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.white,
+      backgroundColor: Colors.transparent,
+      body: Container(
+        decoration: BoxDecoration(gradient: gradient),
+        child: SafeArea(
+          child: SingleChildScrollView(
+            padding:
+                EdgeInsets.symmetric(horizontal: paddingSize, vertical: 32),
+            child: Center(
+              child: _GlassContainer(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const CircleAvatar(
+                      radius: 55,
+                      backgroundImage: AssetImage("assets/pp.png"),
                     ),
-                    shimmerStyle: const TextStyle(
-                      fontSize: 26,
-                      fontWeight: FontWeight.bold,
+                    const SizedBox(height: 24),
+                    _ProfileFutureText(
+                      future: firebase.getFullName(),
+                      shimmerText: "======= ======",
+                      textStyle: const TextStyle(
+                        fontSize: 26,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.white,
+                      ),
+                      shimmerStyle: const TextStyle(
+                        fontSize: 26,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      fadeDuration: 400,
                     ),
-                    fadeDuration: 400,
-                  ),
-                  const SizedBox(height: 8),
-                  _ProfileFutureText(
-                    future: firebase.getDesignation(),
-                    shimmerText: "==============",
-                    textStyle: const TextStyle(
-                      fontSize: 18,
-                      color: Colors.white70,
+                    const SizedBox(height: 8),
+                    _ProfileFutureText(
+                      future: firebase.getDesignation(),
+                      shimmerText: "==============",
+                      textStyle: const TextStyle(
+                        fontSize: 18,
+                        color: Colors.white70,
+                      ),
+                      shimmerStyle: const TextStyle(fontSize: 18),
+                      fadeDuration: 500,
                     ),
-                    shimmerStyle: const TextStyle(fontSize: 18),
-                    fadeDuration: 500,
-                  ),
-                  const SizedBox(height: 24),
-                  const _Divider(),
-                  const SizedBox(height: 20),
-                  _ProfileFutureText(
-                    future: firebase.getDescription(),
-                    shimmerText: "Loading description...",
-                    textStyle: const TextStyle(
-                      fontSize: 16,
-                      color: Colors.white,
-                      height: 1.5,
+                    const SizedBox(height: 24),
+                    const _Divider(),
+                    const SizedBox(height: 20),
+                    _ProfileFutureText(
+                      future: firebase.getDescription(),
+                      shimmerText: "Loading description...",
+                      textStyle: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.white,
+                        height: 1.5,
+                      ),
+                      shimmerStyle: const TextStyle(fontSize: 16),
+                      fadeDuration: 500,
+                      textAlign: TextAlign.center,
                     ),
-                    shimmerStyle: const TextStyle(fontSize: 16),
-                    fadeDuration: 500,
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 20),
-                  const _Divider(),
-                  const SizedBox(height: 20),
+                    const SizedBox(height: 20),
+                    const _Divider(),
+                    const SizedBox(height: 20),
 
-                  // TODO: Sosyal medya butonları burada yer alacak
-                ],
+                    // TODO: Sosyal medya butonları burada yer alacak
+                  ],
+                ),
               ),
             ),
           ),

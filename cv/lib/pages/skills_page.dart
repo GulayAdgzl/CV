@@ -1,3 +1,4 @@
+import 'package:cv/core/gradient_theme_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:cv/controller/firebase_controller.dart';
 import 'package:provider/provider.dart';
@@ -50,6 +51,8 @@ class _SkillsPageState extends State<SkillsPage> {
   }
 
   Widget _buildSkillCard(String skill) {
+    final gradient =
+        Theme.of(context).extension<GradientTheme>()!.backgroundGradient;
     return Card(
       color: Colors.white.withOpacity(0.2),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
@@ -125,6 +128,8 @@ class _SkillsPageState extends State<SkillsPage> {
 
   @override
   Widget build(BuildContext context) {
+    final gradient =
+        Theme.of(context).extension<GradientTheme>()!.backgroundGradient;
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
@@ -133,11 +138,14 @@ class _SkillsPageState extends State<SkillsPage> {
         foregroundColor: Colors.white,
         elevation: 0,
       ),
-      body: _isLoading
-          ? _buildLoading()
-          : _skills.isEmpty
-              ? _buildEmptyState()
-              : _buildSkillSwipeContent(),
+      body: Container(
+        decoration: BoxDecoration(gradient: gradient),
+        child: _isLoading
+            ? _buildLoading()
+            : _skills.isEmpty
+                ? _buildEmptyState()
+                : _buildSkillSwipeContent(),
+      ),
     );
   }
 }
