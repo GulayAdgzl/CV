@@ -7,6 +7,6 @@ Widget svgLoader(String image, {width = 20.0, height = 20.0}) {
     image,
     height: height,
     width: width,
-    color: iconTint,
+    color: AppColors.iconTint,
   );
 }

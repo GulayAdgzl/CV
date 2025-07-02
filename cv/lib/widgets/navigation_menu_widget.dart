@@ -16,7 +16,9 @@ Widget NavigationMenu(icon, {isSelected = false, height, width, onClick}) {
             width: 8,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(50)),
-              color: isSelected ? navigationSelectionColor : Colors.transparent,
+              color: isSelected
+                  ? AppColors.navigationSelectionColor
+                  : Colors.transparent,
             ),
           )
         ],
