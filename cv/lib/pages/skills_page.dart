@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cv/controller/firebase_controller.dart';
+import 'package:provider/provider.dart';
 import 'package:swipe_cards/swipe_cards.dart';
 
 class SkillsPage extends StatefulWidget {
@@ -10,8 +11,8 @@ class SkillsPage extends StatefulWidget {
 }
 
 class _SkillsPageState extends State<SkillsPage> {
-  final FirebaseController _controller = FirebaseController();
   late MatchEngine _matchEngine;
+
   List<SwipeItem> _swipeItems = [];
   List<String> _skills = [];
   bool _isLoading = true;
@@ -23,7 +24,10 @@ class _SkillsPageState extends State<SkillsPage> {
   }
 
   Future<void> _loadSkills() async {
-    final skills = await _controller.getSkills();
+    final firebaseController =
+        Provider.of<FirebaseController>(context, listen: false);
+    final skills = await firebaseController.getSkills();
+
     _swipeItems = skills.map((skill) {
       return SwipeItem(
         content: skill,
@@ -40,11 +44,83 @@ class _SkillsPageState extends State<SkillsPage> {
   }
 
   void _showSnackBar(String message) {
-    if (mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(message)),
+    if (!mounted) return;
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(message)));
+  }
+
+  Widget _buildSkillCard(String skill) {
+    return Card(
+      color: Colors.white.withOpacity(0.2),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+      elevation: 5,
+      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+      child: Center(
+        child: Text(
+          skill,
+          style: const TextStyle(
+            fontSize: 28,
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSwipeControls() {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 32.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          _buildCircleButton(Icons.close, Colors.redAccent, () {
+            _matchEngine.currentItem?.nope();
+          }),
+          _buildCircleButton(Icons.favorite, Colors.green, () {
+            _matchEngine.currentItem?.like();
+          }),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildCircleButton(
+      IconData icon, Color color, VoidCallback onPressed) {
+    return CircleAvatar(
+      backgroundColor: color,
+      radius: 28,
+      child: IconButton(
+        icon: Icon(icon, color: Colors.white),
+        onPressed: onPressed,
+      ),
+    );
+  }
+
+  Widget _buildLoading() => const Center(child: CircularProgressIndicator());
+
+  Widget _buildEmptyState() => const Center(
+        child: Text("No skills found.", style: TextStyle(color: Colors.white)),
       );
-    }
+
+  Widget _buildSkillSwipeContent() {
+    return Column(
+      children: [
+        Expanded(
+          child: SwipeCards(
+            matchEngine: _matchEngine,
+            itemBuilder: (context, index) => _buildSkillCard(_skills[index]),
+            onStackFinished: () => _showSnackBar("All skills swiped!"),
+            itemChanged: (item, index) {
+              debugPrint("Item changed: $item");
+            },
+            upSwipeAllowed: false,
+            fillSpace: true,
+          ),
+        ),
+        _buildSwipeControls(),
+      ],
+    );
   }
 
   @override
@@ -58,77 +134,10 @@ class _SkillsPageState extends State<SkillsPage> {
         elevation: 0,
       ),
       body: _isLoading
-          ? const Center(child: CircularProgressIndicator())
+          ? _buildLoading()
           : _skills.isEmpty
-              ? const Center(
-                  child: Text("No skills found.",
-                      style: TextStyle(color: Colors.white)))
-              : Column(
-                  children: [
-                    Expanded(
-                      child: SwipeCards(
-                        matchEngine: _matchEngine,
-                        itemBuilder: (context, index) {
-                          final skill = _skills[index];
-                          return Card(
-                            color: Colors.white.withOpacity(0.2),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(24)),
-                            elevation: 5,
-                            margin: const EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 40),
-                            child: Center(
-                              child: Text(
-                                skill,
-                                style: const TextStyle(
-                                    fontSize: 28,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                          );
-                        },
-                        onStackFinished: () =>
-                            _showSnackBar("All skills swiped!"),
-                        itemChanged: (item, index) {
-                          debugPrint("Item changed: $item");
-                        },
-                        upSwipeAllowed: false,
-                        fillSpace: true,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 32.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          CircleAvatar(
-                            backgroundColor: Colors.redAccent,
-                            radius: 28,
-                            child: IconButton(
-                              icon:
-                                  const Icon(Icons.close, color: Colors.white),
-                              onPressed: () {
-                                _matchEngine.currentItem?.nope();
-                              },
-                            ),
-                          ),
-                          CircleAvatar(
-                            backgroundColor: Colors.green,
-                            radius: 28,
-                            child: IconButton(
-                              icon: const Icon(Icons.favorite,
-                                  color: Colors.white),
-                              onPressed: () {
-                                _matchEngine.currentItem?.like();
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
+              ? _buildEmptyState()
+              : _buildSkillSwipeContent(),
     );
   }
 }
