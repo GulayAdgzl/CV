@@ -53,6 +53,11 @@ class NavigationSidebar extends StatelessWidget {
               width: iconSize,
               isSelected: selectedIndex == 4,
               onClick: () => onMenuTap(4)),
+          NavigationMenu(navGene,
+              height: iconSize,
+              width: iconSize,
+              isSelected: selectedIndex == 4,
+              onClick: () => onMenuTap(5)),
         ],
       ),
     );

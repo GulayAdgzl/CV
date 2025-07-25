@@ -1,4 +1,4 @@
-import 'package:cv/utils/AppColors.dart';
+import 'package:cv/theme/app_colors.dart';
 import 'package:cv/widgets/svg_loader.dart';
 import 'package:flutter/material.dart';
 
@@ -16,9 +16,7 @@ Widget NavigationMenu(icon, {isSelected = false, height, width, onClick}) {
             width: 8,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(50)),
-              color: isSelected
-                  ? AppColors.navigationSelectionColor
-                  : Colors.transparent,
+              color: isSelected ? AppColors.tiffanyBlue80 : Colors.transparent,
             ),
           )
         ],
