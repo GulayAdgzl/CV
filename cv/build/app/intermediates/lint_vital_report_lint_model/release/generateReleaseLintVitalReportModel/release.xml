@@ -1,0 +1,37 @@
+<variant
+    name="release"
+    package="com.example.cv"
+    minSdkVersion="22"
+    targetSdkVersion="34"
+    shrinking="true"
+    mergedManifest="C:\Users\System Bilgisayar\CV\cv\build\app\intermediates\merged_manifest\release\AndroidManifest.xml"
+    manifestMergeReport="C:\Users\System Bilgisayar\CV\cv\build\app\outputs\logs\manifest-merger-release-report.txt"
+    proguardFiles="C:\Users\System Bilgisayar\CV\cv\build\app\intermediates\default_proguard_files\global\proguard-android-optimize.txt-8.2.1;C:\Program Files\flutter\packages\flutter_tools\gradle\flutter_proguard_rules.pro;proguard-rules.pro"
+    partialResultsDir="C:\Users\System Bilgisayar\CV\cv\build\app\intermediates\lint_vital_partial_results\release\out">
+  <buildFeatures
+      namespacing="REQUIRED"/>
+  <sourceProviders>
+    <sourceProvider
+        manifests="src\main\AndroidManifest.xml"
+        javaDirectories="src\main\java;src\release\java;src\main\kotlin;src\release\kotlin"
+        resDirectories="src\main\res;src\release\res"
+        assetsDirectories="src\main\assets;src\release\assets"/>
+  </sourceProviders>
+  <testSourceProviders>
+  </testSourceProviders>
+  <testFixturesSourceProviders>
+  </testFixturesSourceProviders>
+  <manifestPlaceholders>
+    <placeholder
+        name="applicationName"
+        value="android.app.Application" />
+  </manifestPlaceholders>
+  <artifact
+      classOutputs="C:\Users\System Bilgisayar\CV\cv\build\app\intermediates\javac\release\classes;C:\Users\System Bilgisayar\CV\cv\build\app\tmp\kotlin-classes\release;C:\Users\System Bilgisayar\CV\cv\build\app\kotlinToolingMetadata;C:\Users\System Bilgisayar\CV\cv\build\app\intermediates\compile_and_runtime_not_namespaced_r_class_jar\release\R.jar"
+      type="MAIN"
+      applicationId="com.example.cv"
+      generatedSourceFolders="C:\Users\System Bilgisayar\CV\cv\build\app\generated\ap_generated_sources\release\out"
+      generatedResourceFolders="C:\Users\System Bilgisayar\CV\cv\build\app\generated\res\google-services\release;C:\Users\System Bilgisayar\CV\cv\build\app\generated\res\resValues\release"
+      desugaredMethodsFiles="C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\f99e9e7e0915f3e126667852848c3302\transformed\D8BackportedDesugaredMethods.txt">
+  </artifact>
+</variant>

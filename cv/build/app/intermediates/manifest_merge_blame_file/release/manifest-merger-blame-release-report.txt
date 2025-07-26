@@ -1,0 +1,310 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.cv"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="22"
+9        android:targetSdkVersion="34" />
+10    <!--
+11         Required to query activities that can process text, see:
+12         https://developer.android.com/training/package-visibility and
+13         https://developer.android.com/reference/android/content/Intent#ACTION_PROCESS_TEXT.
+14
+15         In particular, this is used by the Flutter engine in io.flutter.plugin.text.ProcessTextPlugin.
+16    -->
+17    <queries>
+17-->C:\Users\System Bilgisayar\CV\cv\android\app\src\main\AndroidManifest.xml:39:5-44:15
+18        <intent>
+18-->C:\Users\System Bilgisayar\CV\cv\android\app\src\main\AndroidManifest.xml:40:9-43:18
+19            <action android:name="android.intent.action.PROCESS_TEXT" />
+19-->C:\Users\System Bilgisayar\CV\cv\android\app\src\main\AndroidManifest.xml:41:13-72
+19-->C:\Users\System Bilgisayar\CV\cv\android\app\src\main\AndroidManifest.xml:41:21-70
+20
+21            <data android:mimeType="text/plain" />
+21-->C:\Users\System Bilgisayar\CV\cv\android\app\src\main\AndroidManifest.xml:42:13-50
+21-->C:\Users\System Bilgisayar\CV\cv\android\app\src\main\AndroidManifest.xml:42:19-48
+22        </intent>
+23    </queries>
+24    <!-- Although the *SdkVersion is captured in gradle build files, this is required for non gradle builds -->
+25    <!-- <uses-sdk android:minSdkVersion="21"/> -->
+26    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+26-->[com.google.firebase:firebase-database:21.0.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\46c6bf90c4b9bbf858b84dd34542489e\transformed\jetified-firebase-database-21.0.0\AndroidManifest.xml:22:5-79
+26-->[com.google.firebase:firebase-database:21.0.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\46c6bf90c4b9bbf858b84dd34542489e\transformed\jetified-firebase-database-21.0.0\AndroidManifest.xml:22:22-76
+27    <uses-permission android:name="android.permission.INTERNET" />
+27-->[com.google.firebase:firebase-database:21.0.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\46c6bf90c4b9bbf858b84dd34542489e\transformed\jetified-firebase-database-21.0.0\AndroidManifest.xml:23:5-67
+27-->[com.google.firebase:firebase-database:21.0.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\46c6bf90c4b9bbf858b84dd34542489e\transformed\jetified-firebase-database-21.0.0\AndroidManifest.xml:23:22-64
+28
+29    <permission
+29-->[androidx.core:core:1.13.1] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\4dcedc3e372c0d9c160b00c8df9cdd80\transformed\core-1.13.1\AndroidManifest.xml:22:5-24:47
+30        android:name="com.example.cv.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+30-->[androidx.core:core:1.13.1] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\4dcedc3e372c0d9c160b00c8df9cdd80\transformed\core-1.13.1\AndroidManifest.xml:23:9-81
+31        android:protectionLevel="signature" />
+31-->[androidx.core:core:1.13.1] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\4dcedc3e372c0d9c160b00c8df9cdd80\transformed\core-1.13.1\AndroidManifest.xml:24:9-44
+32
+33    <uses-permission android:name="com.example.cv.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+33-->[androidx.core:core:1.13.1] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\4dcedc3e372c0d9c160b00c8df9cdd80\transformed\core-1.13.1\AndroidManifest.xml:26:5-97
+33-->[androidx.core:core:1.13.1] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\4dcedc3e372c0d9c160b00c8df9cdd80\transformed\core-1.13.1\AndroidManifest.xml:26:22-94
+34
+35    <application
+36        android:name="android.app.Application"
+36-->C:\Users\System Bilgisayar\CV\cv\android\app\src\main\AndroidManifest.xml:4:9-42
+37        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+37-->[androidx.core:core:1.13.1] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\4dcedc3e372c0d9c160b00c8df9cdd80\transformed\core-1.13.1\AndroidManifest.xml:28:18-86
+38        android:extractNativeLibs="true"
+39        android:icon="@mipmap/ic_launcher"
+39-->C:\Users\System Bilgisayar\CV\cv\android\app\src\main\AndroidManifest.xml:5:9-43
+40        android:label="cv" >
+40-->C:\Users\System Bilgisayar\CV\cv\android\app\src\main\AndroidManifest.xml:3:9-27
+41        <activity
+41-->C:\Users\System Bilgisayar\CV\cv\android\app\src\main\AndroidManifest.xml:6:9-27:20
+42            android:name="com.example.cv.MainActivity"
+42-->C:\Users\System Bilgisayar\CV\cv\android\app\src\main\AndroidManifest.xml:7:13-41
+43            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+43-->C:\Users\System Bilgisayar\CV\cv\android\app\src\main\AndroidManifest.xml:12:13-163
+44            android:exported="true"
+44-->C:\Users\System Bilgisayar\CV\cv\android\app\src\main\AndroidManifest.xml:8:13-36
+45            android:hardwareAccelerated="true"
+45-->C:\Users\System Bilgisayar\CV\cv\android\app\src\main\AndroidManifest.xml:13:13-47
+46            android:launchMode="singleTop"
+46-->C:\Users\System Bilgisayar\CV\cv\android\app\src\main\AndroidManifest.xml:9:13-43
+47            android:taskAffinity=""
+47-->C:\Users\System Bilgisayar\CV\cv\android\app\src\main\AndroidManifest.xml:10:13-36
+48            android:theme="@style/LaunchTheme"
+48-->C:\Users\System Bilgisayar\CV\cv\android\app\src\main\AndroidManifest.xml:11:13-47
+49            android:windowSoftInputMode="adjustResize" >
+49-->C:\Users\System Bilgisayar\CV\cv\android\app\src\main\AndroidManifest.xml:14:13-55
+50
+51            <!--
+52                 Specifies an Android theme to apply to this Activity as soon as
+53                 the Android process has started. This theme is visible to the user
+54                 while the Flutter UI initializes. After that, this theme continues
+55                 to determine the Window background behind the Flutter UI.
+56            -->
+57            <meta-data
+57-->C:\Users\System Bilgisayar\CV\cv\android\app\src\main\AndroidManifest.xml:19:13-22:17
+58                android:name="io.flutter.embedding.android.NormalTheme"
+58-->C:\Users\System Bilgisayar\CV\cv\android\app\src\main\AndroidManifest.xml:20:15-70
+59                android:resource="@style/NormalTheme" />
+59-->C:\Users\System Bilgisayar\CV\cv\android\app\src\main\AndroidManifest.xml:21:15-52
+60
+61            <intent-filter>
+61-->C:\Users\System Bilgisayar\CV\cv\android\app\src\main\AndroidManifest.xml:23:13-26:29
+62                <action android:name="android.intent.action.MAIN" />
+62-->C:\Users\System Bilgisayar\CV\cv\android\app\src\main\AndroidManifest.xml:24:17-68
+62-->C:\Users\System Bilgisayar\CV\cv\android\app\src\main\AndroidManifest.xml:24:25-66
+63
+64                <category android:name="android.intent.category.LAUNCHER" />
+64-->C:\Users\System Bilgisayar\CV\cv\android\app\src\main\AndroidManifest.xml:25:17-76
+64-->C:\Users\System Bilgisayar\CV\cv\android\app\src\main\AndroidManifest.xml:25:27-74
+65            </intent-filter>
+66        </activity>
+67        <!--
+68             Don't delete the meta-data below.
+69             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+70        -->
+71        <meta-data
+71-->C:\Users\System Bilgisayar\CV\cv\android\app\src\main\AndroidManifest.xml:30:9-32:33
+72            android:name="flutterEmbedding"
+72-->C:\Users\System Bilgisayar\CV\cv\android\app\src\main\AndroidManifest.xml:31:13-44
+73            android:value="2" />
+73-->C:\Users\System Bilgisayar\CV\cv\android\app\src\main\AndroidManifest.xml:32:13-30
+74
+75        <service
+75-->[:firebase_database] C:\Users\System Bilgisayar\CV\cv\build\firebase_database\intermediates\merged_manifest\release\AndroidManifest.xml:8:9-12:19
+76            android:name="com.google.firebase.components.ComponentDiscoveryService"
+76-->[:firebase_database] C:\Users\System Bilgisayar\CV\cv\build\firebase_database\intermediates\merged_manifest\release\AndroidManifest.xml:8:18-89
+77            android:directBootAware="true"
+77-->[com.google.firebase:firebase-common:21.0.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\219d0582046176d5d6d0f0e8a1d2b3c4\transformed\jetified-firebase-common-21.0.0\AndroidManifest.xml:32:13-43
+78            android:exported="false" >
+78-->[com.google.firebase:firebase-database:21.0.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\46c6bf90c4b9bbf858b84dd34542489e\transformed\jetified-firebase-database-21.0.0\AndroidManifest.xml:28:13-37
+79            <meta-data
+79-->[:firebase_database] C:\Users\System Bilgisayar\CV\cv\build\firebase_database\intermediates\merged_manifest\release\AndroidManifest.xml:9:13-11:85
+80                android:name="com.google.firebase.components:io.flutter.plugins.firebase.database.FlutterFirebaseAppRegistrar"
+80-->[:firebase_database] C:\Users\System Bilgisayar\CV\cv\build\firebase_database\intermediates\merged_manifest\release\AndroidManifest.xml:10:17-127
+81                android:value="com.google.firebase.components.ComponentRegistrar" />
+81-->[:firebase_database] C:\Users\System Bilgisayar\CV\cv\build\firebase_database\intermediates\merged_manifest\release\AndroidManifest.xml:11:17-82
+82            <meta-data
+82-->[:firebase_core] C:\Users\System Bilgisayar\CV\cv\build\firebase_core\intermediates\merged_manifest\release\AndroidManifest.xml:9:13-11:85
+83                android:name="com.google.firebase.components:io.flutter.plugins.firebase.core.FlutterFirebaseCoreRegistrar"
+83-->[:firebase_core] C:\Users\System Bilgisayar\CV\cv\build\firebase_core\intermediates\merged_manifest\release\AndroidManifest.xml:10:17-124
+84                android:value="com.google.firebase.components.ComponentRegistrar" />
+84-->[:firebase_core] C:\Users\System Bilgisayar\CV\cv\build\firebase_core\intermediates\merged_manifest\release\AndroidManifest.xml:11:17-82
+85            <meta-data
+85-->[com.google.firebase:firebase-database:21.0.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\46c6bf90c4b9bbf858b84dd34542489e\transformed\jetified-firebase-database-21.0.0\AndroidManifest.xml:29:13-31:85
+86                android:name="com.google.firebase.components:com.google.firebase.database.FirebaseDatabaseKtxRegistrar"
+86-->[com.google.firebase:firebase-database:21.0.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\46c6bf90c4b9bbf858b84dd34542489e\transformed\jetified-firebase-database-21.0.0\AndroidManifest.xml:30:17-120
+87                android:value="com.google.firebase.components.ComponentRegistrar" />
+87-->[com.google.firebase:firebase-database:21.0.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\46c6bf90c4b9bbf858b84dd34542489e\transformed\jetified-firebase-database-21.0.0\AndroidManifest.xml:31:17-82
+88            <meta-data
+88-->[com.google.firebase:firebase-database:21.0.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\46c6bf90c4b9bbf858b84dd34542489e\transformed\jetified-firebase-database-21.0.0\AndroidManifest.xml:32:13-34:85
+89                android:name="com.google.firebase.components:com.google.firebase.database.DatabaseRegistrar"
+89-->[com.google.firebase:firebase-database:21.0.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\46c6bf90c4b9bbf858b84dd34542489e\transformed\jetified-firebase-database-21.0.0\AndroidManifest.xml:33:17-109
+90                android:value="com.google.firebase.components.ComponentRegistrar" />
+90-->[com.google.firebase:firebase-database:21.0.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\46c6bf90c4b9bbf858b84dd34542489e\transformed\jetified-firebase-database-21.0.0\AndroidManifest.xml:34:17-82
+91            <meta-data
+91-->[com.google.firebase:firebase-common-ktx:21.0.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\6856e46dc3f1b585b66f0fb357718ac4\transformed\jetified-firebase-common-ktx-21.0.0\AndroidManifest.xml:12:13-14:85
+92                android:name="com.google.firebase.components:com.google.firebase.ktx.FirebaseCommonLegacyRegistrar"
+92-->[com.google.firebase:firebase-common-ktx:21.0.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\6856e46dc3f1b585b66f0fb357718ac4\transformed\jetified-firebase-common-ktx-21.0.0\AndroidManifest.xml:13:17-116
+93                android:value="com.google.firebase.components.ComponentRegistrar" />
+93-->[com.google.firebase:firebase-common-ktx:21.0.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\6856e46dc3f1b585b66f0fb357718ac4\transformed\jetified-firebase-common-ktx-21.0.0\AndroidManifest.xml:14:17-82
+94            <meta-data
+94-->[com.google.firebase:firebase-common:21.0.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\219d0582046176d5d6d0f0e8a1d2b3c4\transformed\jetified-firebase-common-21.0.0\AndroidManifest.xml:35:13-37:85
+95                android:name="com.google.firebase.components:com.google.firebase.FirebaseCommonKtxRegistrar"
+95-->[com.google.firebase:firebase-common:21.0.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\219d0582046176d5d6d0f0e8a1d2b3c4\transformed\jetified-firebase-common-21.0.0\AndroidManifest.xml:36:17-109
+96                android:value="com.google.firebase.components.ComponentRegistrar" />
+96-->[com.google.firebase:firebase-common:21.0.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\219d0582046176d5d6d0f0e8a1d2b3c4\transformed\jetified-firebase-common-21.0.0\AndroidManifest.xml:37:17-82
+97        </service>
+98        <!--
+99           Declares a provider which allows us to store files to share in
+100           '.../caches/share_plus' and grant the receiving action access
+101        -->
+102        <provider
+102-->[:share_plus] C:\Users\System Bilgisayar\CV\cv\build\share_plus\intermediates\merged_manifest\release\AndroidManifest.xml:13:9-21:20
+103            android:name="dev.fluttercommunity.plus.share.ShareFileProvider"
+103-->[:share_plus] C:\Users\System Bilgisayar\CV\cv\build\share_plus\intermediates\merged_manifest\release\AndroidManifest.xml:14:13-77
+104            android:authorities="com.example.cv.flutter.share_provider"
+104-->[:share_plus] C:\Users\System Bilgisayar\CV\cv\build\share_plus\intermediates\merged_manifest\release\AndroidManifest.xml:15:13-74
+105            android:exported="false"
+105-->[:share_plus] C:\Users\System Bilgisayar\CV\cv\build\share_plus\intermediates\merged_manifest\release\AndroidManifest.xml:16:13-37
+106            android:grantUriPermissions="true" >
+106-->[:share_plus] C:\Users\System Bilgisayar\CV\cv\build\share_plus\intermediates\merged_manifest\release\AndroidManifest.xml:17:13-47
+107            <meta-data
+107-->[:share_plus] C:\Users\System Bilgisayar\CV\cv\build\share_plus\intermediates\merged_manifest\release\AndroidManifest.xml:18:13-20:68
+108                android:name="android.support.FILE_PROVIDER_PATHS"
+108-->[:share_plus] C:\Users\System Bilgisayar\CV\cv\build\share_plus\intermediates\merged_manifest\release\AndroidManifest.xml:19:17-67
+109                android:resource="@xml/flutter_share_file_paths" />
+109-->[:share_plus] C:\Users\System Bilgisayar\CV\cv\build\share_plus\intermediates\merged_manifest\release\AndroidManifest.xml:20:17-65
+110        </provider>
+111        <!--
+112           This manifest declared broadcast receiver allows us to use an explicit
+113           Intent when creating a PendingItent to be informed of the user's choice
+114        -->
+115        <receiver
+115-->[:share_plus] C:\Users\System Bilgisayar\CV\cv\build\share_plus\intermediates\merged_manifest\release\AndroidManifest.xml:26:9-32:20
+116            android:name="dev.fluttercommunity.plus.share.SharePlusPendingIntent"
+116-->[:share_plus] C:\Users\System Bilgisayar\CV\cv\build\share_plus\intermediates\merged_manifest\release\AndroidManifest.xml:27:13-82
+117            android:exported="false" >
+117-->[:share_plus] C:\Users\System Bilgisayar\CV\cv\build\share_plus\intermediates\merged_manifest\release\AndroidManifest.xml:28:13-37
+118            <intent-filter>
+118-->[:share_plus] C:\Users\System Bilgisayar\CV\cv\build\share_plus\intermediates\merged_manifest\release\AndroidManifest.xml:29:13-31:29
+119                <action android:name="EXTRA_CHOSEN_COMPONENT" />
+119-->[:share_plus] C:\Users\System Bilgisayar\CV\cv\build\share_plus\intermediates\merged_manifest\release\AndroidManifest.xml:30:17-65
+119-->[:share_plus] C:\Users\System Bilgisayar\CV\cv\build\share_plus\intermediates\merged_manifest\release\AndroidManifest.xml:30:25-62
+120            </intent-filter>
+121        </receiver>
+122
+123        <activity
+123-->[:url_launcher_android] C:\Users\System Bilgisayar\CV\cv\build\url_launcher_android\intermediates\merged_manifest\release\AndroidManifest.xml:8:9-11:74
+124            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
+124-->[:url_launcher_android] C:\Users\System Bilgisayar\CV\cv\build\url_launcher_android\intermediates\merged_manifest\release\AndroidManifest.xml:9:13-74
+125            android:exported="false"
+125-->[:url_launcher_android] C:\Users\System Bilgisayar\CV\cv\build\url_launcher_android\intermediates\merged_manifest\release\AndroidManifest.xml:10:13-37
+126            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+126-->[:url_launcher_android] C:\Users\System Bilgisayar\CV\cv\build\url_launcher_android\intermediates\merged_manifest\release\AndroidManifest.xml:11:13-71
+127
+128        <uses-library
+128-->[androidx.window:window:1.2.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\e6ea119707449d1ba05a43d45dbd9825\transformed\jetified-window-1.2.0\AndroidManifest.xml:23:9-25:40
+129            android:name="androidx.window.extensions"
+129-->[androidx.window:window:1.2.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\e6ea119707449d1ba05a43d45dbd9825\transformed\jetified-window-1.2.0\AndroidManifest.xml:24:13-54
+130            android:required="false" />
+130-->[androidx.window:window:1.2.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\e6ea119707449d1ba05a43d45dbd9825\transformed\jetified-window-1.2.0\AndroidManifest.xml:25:13-37
+131        <uses-library
+131-->[androidx.window:window:1.2.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\e6ea119707449d1ba05a43d45dbd9825\transformed\jetified-window-1.2.0\AndroidManifest.xml:26:9-28:40
+132            android:name="androidx.window.sidecar"
+132-->[androidx.window:window:1.2.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\e6ea119707449d1ba05a43d45dbd9825\transformed\jetified-window-1.2.0\AndroidManifest.xml:27:13-51
+133            android:required="false" />
+133-->[androidx.window:window:1.2.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\e6ea119707449d1ba05a43d45dbd9825\transformed\jetified-window-1.2.0\AndroidManifest.xml:28:13-37
+134
+135        <provider
+135-->[com.google.firebase:firebase-common:21.0.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\219d0582046176d5d6d0f0e8a1d2b3c4\transformed\jetified-firebase-common-21.0.0\AndroidManifest.xml:23:9-28:39
+136            android:name="com.google.firebase.provider.FirebaseInitProvider"
+136-->[com.google.firebase:firebase-common:21.0.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\219d0582046176d5d6d0f0e8a1d2b3c4\transformed\jetified-firebase-common-21.0.0\AndroidManifest.xml:24:13-77
+137            android:authorities="com.example.cv.firebaseinitprovider"
+137-->[com.google.firebase:firebase-common:21.0.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\219d0582046176d5d6d0f0e8a1d2b3c4\transformed\jetified-firebase-common-21.0.0\AndroidManifest.xml:25:13-72
+138            android:directBootAware="true"
+138-->[com.google.firebase:firebase-common:21.0.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\219d0582046176d5d6d0f0e8a1d2b3c4\transformed\jetified-firebase-common-21.0.0\AndroidManifest.xml:26:13-43
+139            android:exported="false"
+139-->[com.google.firebase:firebase-common:21.0.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\219d0582046176d5d6d0f0e8a1d2b3c4\transformed\jetified-firebase-common-21.0.0\AndroidManifest.xml:27:13-37
+140            android:initOrder="100" />
+140-->[com.google.firebase:firebase-common:21.0.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\219d0582046176d5d6d0f0e8a1d2b3c4\transformed\jetified-firebase-common-21.0.0\AndroidManifest.xml:28:13-36
+141
+142        <activity
+142-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\666d40937657cadc9244c9d5859fe760\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:20:9-22:45
+143            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+143-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\666d40937657cadc9244c9d5859fe760\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:20:19-85
+144            android:exported="false"
+144-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\666d40937657cadc9244c9d5859fe760\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:22:19-43
+145            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+145-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\666d40937657cadc9244c9d5859fe760\transformed\jetified-play-services-base-18.1.0\AndroidManifest.xml:21:19-78
+146
+147        <provider
+147-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\bb52b835d63d998d985b5a2ba0142701\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:24:9-32:20
+148            android:name="androidx.startup.InitializationProvider"
+148-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\bb52b835d63d998d985b5a2ba0142701\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:25:13-67
+149            android:authorities="com.example.cv.androidx-startup"
+149-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\bb52b835d63d998d985b5a2ba0142701\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:26:13-68
+150            android:exported="false" >
+150-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\bb52b835d63d998d985b5a2ba0142701\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:27:13-37
+151            <meta-data
+151-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\bb52b835d63d998d985b5a2ba0142701\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:29:13-31:52
+152                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+152-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\bb52b835d63d998d985b5a2ba0142701\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:30:17-78
+153                android:value="androidx.startup" />
+153-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\bb52b835d63d998d985b5a2ba0142701\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:31:17-49
+154            <meta-data
+154-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\18d193f70a32e7e3394e5b395f1124a6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:29:13-31:52
+155                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+155-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\18d193f70a32e7e3394e5b395f1124a6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:30:17-85
+156                android:value="androidx.startup" />
+156-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\18d193f70a32e7e3394e5b395f1124a6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:31:17-49
+157        </provider>
+158
+159        <meta-data
+159-->[com.google.android.gms:play-services-basement:18.3.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\aecb8e5949a4f7832fc191178429bd1c\transformed\jetified-play-services-basement-18.3.0\AndroidManifest.xml:21:9-23:69
+160            android:name="com.google.android.gms.version"
+160-->[com.google.android.gms:play-services-basement:18.3.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\aecb8e5949a4f7832fc191178429bd1c\transformed\jetified-play-services-basement-18.3.0\AndroidManifest.xml:22:13-58
+161            android:value="@integer/google_play_services_version" />
+161-->[com.google.android.gms:play-services-basement:18.3.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\aecb8e5949a4f7832fc191178429bd1c\transformed\jetified-play-services-basement-18.3.0\AndroidManifest.xml:23:13-66
+162
+163        <receiver
+163-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\18d193f70a32e7e3394e5b395f1124a6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:34:9-52:20
+164            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+164-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\18d193f70a32e7e3394e5b395f1124a6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:35:13-76
+165            android:directBootAware="false"
+165-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\18d193f70a32e7e3394e5b395f1124a6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:36:13-44
+166            android:enabled="true"
+166-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\18d193f70a32e7e3394e5b395f1124a6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:37:13-35
+167            android:exported="true"
+167-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\18d193f70a32e7e3394e5b395f1124a6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:38:13-36
+168            android:permission="android.permission.DUMP" >
+168-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\18d193f70a32e7e3394e5b395f1124a6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:39:13-57
+169            <intent-filter>
+169-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\18d193f70a32e7e3394e5b395f1124a6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:40:13-42:29
+170                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+170-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\18d193f70a32e7e3394e5b395f1124a6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:41:17-91
+170-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\18d193f70a32e7e3394e5b395f1124a6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:41:25-88
+171            </intent-filter>
+172            <intent-filter>
+172-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\18d193f70a32e7e3394e5b395f1124a6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:43:13-45:29
+173                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+173-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\18d193f70a32e7e3394e5b395f1124a6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:44:17-85
+173-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\18d193f70a32e7e3394e5b395f1124a6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:44:25-82
+174            </intent-filter>
+175            <intent-filter>
+175-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\18d193f70a32e7e3394e5b395f1124a6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:46:13-48:29
+176                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+176-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\18d193f70a32e7e3394e5b395f1124a6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:47:17-88
+176-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\18d193f70a32e7e3394e5b395f1124a6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:47:25-85
+177            </intent-filter>
+178            <intent-filter>
+178-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\18d193f70a32e7e3394e5b395f1124a6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:49:13-51:29
+179                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+179-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\18d193f70a32e7e3394e5b395f1124a6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:50:17-95
+179-->[androidx.profileinstaller:profileinstaller:1.3.1] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\18d193f70a32e7e3394e5b395f1124a6\transformed\jetified-profileinstaller-1.3.1\AndroidManifest.xml:50:25-92
+180            </intent-filter>
+181        </receiver>
+182    </application>
+183
+184</manifest>

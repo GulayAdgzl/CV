@@ -1,9 +1,10 @@
 import 'package:cv/pages/contact/contact_page.dart';
 import 'package:cv/pages/experience_page.dart';
+import 'package:cv/pages/generator/resume_generator_page.dart';
 import 'package:cv/pages/profile/profile_page.dart';
 import 'package:cv/pages/project_page.dart';
-import 'package:cv/pages/resume_generator_page.dart';
-import 'package:cv/pages/skills_page.dart';
+
+import 'package:cv/pages/skills/skills_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 
