@@ -11,7 +11,7 @@ import 'package:flutter/services.dart';
 import 'package:share_plus/share_plus.dart';
 
 import 'package:url_launcher/url_launcher.dart';
-
+/*
 class ResumeGeneratorPage extends StatefulWidget {
   const ResumeGeneratorPage({super.key});
 
@@ -379,3 +379,4 @@ Please format it as a complete email with proper greeting, body paragraphs, and 
     );
   }
 }
+*/

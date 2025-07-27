@@ -1,3 +1,4 @@
+import 'package:cv/pages/contact/contact_page.dart';
 import 'package:cv/services/firebase_controller.dart';
 import 'package:cv/firebase/firebase_init.dart';
 import 'package:cv/pages/contact/contact_provider.dart';
@@ -14,18 +15,17 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initializeFirebase();
 
-  runApp(MultiProvider(
-    providers: [
-      ChangeNotifierProvider(create: (_) => ContactProvider()),
-      ChangeNotifierProvider(create: (_) => ProfileProvider()),
-      ChangeNotifierProvider(create: (_) => SkillsProvider()),
-      ChangeNotifierProvider(create: (_) => ExperienceProvider()),
-      ChangeNotifierProvider(create: (_) => ProjectProvider()),
-      ChangeNotifierProvider(create: (_) => ResumeGeneratorProvider()),
-    ],
-    child: MyApp(),
-  )
-      /* MultiProvider(
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => ContactProvider(FirebaseService()),
+        ),
+      ],
+      child: MaterialApp(home: ContactPage()),
+    ),
+  );
+  /* MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => NavigationProvider()),
         Provider(create: (_) => FirebaseController()),
@@ -45,7 +45,6 @@ void main() async {
       ],
       child: const MyApp(),
     ),*/
-      );
 }
 
 class MyApp extends StatelessWidget {

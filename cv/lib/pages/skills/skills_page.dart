@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:cv/services/firebase_controller.dart';
 import 'package:provider/provider.dart';
 import 'package:swipe_cards/swipe_cards.dart';
-
+/*
 class SkillsPage extends StatefulWidget {
   const SkillsPage({super.key});
 
@@ -299,3 +299,4 @@ class _SkillsPageState extends State<SkillsPage> with TickerProviderStateMixin {
     );
   }
 }
+*/

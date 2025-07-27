@@ -1,5 +1,6 @@
 import 'package:cv/services/firebase_controller.dart';
 import 'package:flutter/foundation.dart';
+/*
 
 class ProfileProvider extends ChangeNotifier {
   String? _fullName;
@@ -92,3 +93,4 @@ class ProfileProvider extends ChangeNotifier {
     }
   }
 }
+*/

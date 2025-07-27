@@ -6,7 +6,7 @@ import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
-
+/*
 class ProjectPage extends StatelessWidget {
   const ProjectPage({super.key});
 
@@ -33,3 +33,4 @@ class ProjectPage extends StatelessWidget {
     );
   }
 }
+*/

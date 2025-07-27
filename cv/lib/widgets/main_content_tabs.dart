@@ -23,12 +23,12 @@ class MainContentTabs extends StatelessWidget {
     return TabBarView(
       controller: controller,
       children: [
-        ProfilePage(),
+        /*  ProfilePage(),
         ExperiencePage(),
         ProjectPage(),
-        SkillsPage(),
+        SkillsPage(),*/
         ContactPage(),
-        ResumeGeneratorPage(),
+        //ResumeGeneratorPage(),
       ],
     );
   }

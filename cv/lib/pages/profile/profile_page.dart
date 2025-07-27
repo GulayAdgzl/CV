@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart'; // AppShimmer yerine Shimmer paketi
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:url_launcher/url_launcher.dart'; // FadeIn için
-
+/*
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
 
@@ -339,3 +339,4 @@ class _Divider extends StatelessWidget {
     return const Divider(color: Colors.white30, thickness: 0.5);
   }
 }
+*/

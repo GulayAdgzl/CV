@@ -1,42 +1,55 @@
+import 'package:cv/model/contact_model.dart';
 import 'package:cv/services/firebase_controller.dart';
 import 'package:flutter/material.dart';
 
 class ContactProvider extends ChangeNotifier {
-  Map<String, dynamic>? _aboutInfo;
+  ContactModel? _contactInfo;
   bool _isLoading = false;
   String? _error;
 
   // Getters
-  Map<String, dynamic>? get aboutInfo => _aboutInfo;
+  ContactModel? get contactInfo => _contactInfo;
   bool get isLoading => _isLoading;
   String? get error => _error;
 
-  // Individual getters for easy access
-  String? get name => _aboutInfo?['name'];
-  String? get designation => _aboutInfo?['designation'];
-  String? get email => _aboutInfo?['email'];
-  String? get location => _aboutInfo?['location'];
-  String? get linkedin => _aboutInfo?['linkedin'];
-  String? get github => _aboutInfo?['github'];
-  String? get medium => _aboutInfo?['medium'];
+  // Easy access getters
+  String? get name => _contactInfo?.name;
+  String? get designation => _contactInfo?.designation;
+  String? get email => _contactInfo?.email;
+  String? get phone => _contactInfo?.phone;
+  String? get location => _contactInfo?.location;
+  String? get bio => _contactInfo?.bio;
+  String? get profileImage => _contactInfo?.profileImage;
 
-  // Firebase controller reference
-  final FirebaseController _firebaseController;
+  // Social media getters
+  String? get linkedin => _contactInfo?.socialMedia?.linkedin;
+  String? get github => _contactInfo?.socialMedia?.github;
+  String? get medium => _contactInfo?.socialMedia?.medium;
+  String? get twitter => _contactInfo?.socialMedia?.twitter;
+  String? get instagram => _contactInfo?.socialMedia?.instagram;
 
-  ContactProvider(this._firebaseController);
+  // Firebase service reference
+  final FirebaseService _firebaseService;
 
-  // Load contact/about information
+  ContactProvider(this._firebaseService);
+
+  // Load contact information
   Future<void> loadContactInfo() async {
     if (_isLoading) return;
 
     _setLoading(true);
-    _error = null;
+    _clearError();
 
     try {
-      _aboutInfo = await _firebaseController.getAboutInfo();
+      final data = await _firebaseService.getAboutInfo();
+      if (data != null) {
+        _contactInfo = ContactModel.fromMap(data);
+      } else {
+        _contactInfo = null;
+      }
     } catch (e) {
-      _error = e.toString();
-      _aboutInfo = null;
+      _setError('Failed to load contact information: ${e.toString()}');
+      _contactInfo = null;
     } finally {
       _setLoading(false);
     }
@@ -44,57 +57,91 @@ class ContactProvider extends ChangeNotifier {
 
   // Refresh contact information
   Future<void> refreshContactInfo() async {
-    _aboutInfo = null;
+    _contactInfo = null;
     await loadContactInfo();
   }
 
+  // Update contact information
+  Future<bool> updateContactInfo(ContactModel updatedContact) async {
+    _setLoading(true);
+    _clearError();
+
+    try {
+      await _firebaseService.updateAboutInfo(updatedContact.toMap());
+      _contactInfo = updatedContact;
+      _setLoading(false);
+      return true;
+    } catch (e) {
+      _setError('Failed to update contact information: ${e.toString()}');
+      _setLoading(false);
+      return false;
+    }
+  }
+
+  // Update individual fields
+  Future<bool> updateEmail(String newEmail) async {
+    if (_contactInfo == null) return false;
+
+    final updatedContact = _contactInfo!.copyWith(email: newEmail);
+    return await updateContactInfo(updatedContact);
+  }
+
+  Future<bool> updatePhone(String newPhone) async {
+    if (_contactInfo == null) return false;
+
+    final updatedContact = _contactInfo!.copyWith(phone: newPhone);
+    return await updateContactInfo(updatedContact);
+  }
+
+  Future<bool> updateLocation(String newLocation) async {
+    if (_contactInfo == null) return false;
+
+    final updatedContact = _contactInfo!.copyWith(location: newLocation);
+    return await updateContactInfo(updatedContact);
+  }
+
+  Future<bool> updateSocialMedia({
+    String? linkedin,
+    String? github,
+    String? medium,
+    String? twitter,
+    String? instagram,
+  }) async {
+    if (_contactInfo == null) return false;
+
+    final currentSocial = _contactInfo!.socialMedia ?? SocialMediaModel();
+    final updatedSocial = currentSocial.copyWith(
+      linkedin: linkedin,
+      github: github,
+      medium: medium,
+      twitter: twitter,
+      instagram: instagram,
+    );
+
+    final updatedContact = _contactInfo!.copyWith(socialMedia: updatedSocial);
+    return await updateContactInfo(updatedContact);
+  }
+
+  // Helper methods
   void _setLoading(bool loading) {
     _isLoading = loading;
     notifyListeners();
   }
 
-  // Update methods for individual contact fields
-  Future<void> updateEmail(String newEmail) async {
-    try {
-      // await _firebaseController.updateEmail(newEmail);
-      if (_aboutInfo != null) {
-        _aboutInfo!['email'] = newEmail;
-        notifyListeners();
-      }
-    } catch (e) {
-      _error = e.toString();
-      notifyListeners();
-    }
+  void _setError(String error) {
+    _error = error;
+    notifyListeners();
   }
 
-  Future<void> updateLocation(String newLocation) async {
-    try {
-      // await _firebaseController.updateLocation(newLocation);
-      if (_aboutInfo != null) {
-        _aboutInfo!['location'] = newLocation;
-        notifyListeners();
-      }
-    } catch (e) {
-      _error = e.toString();
-      notifyListeners();
-    }
+  void _clearError() {
+    _error = null;
   }
 
-  Future<void> updateSocialMedia({
-    String? linkedin,
-    String? github,
-    String? medium,
-  }) async {
-    try {
-      if (_aboutInfo != null) {
-        if (linkedin != null) _aboutInfo!['linkedin'] = linkedin;
-        if (github != null) _aboutInfo!['github'] = github;
-        if (medium != null) _aboutInfo!['medium'] = medium;
-        notifyListeners();
-      }
-    } catch (e) {
-      _error = e.toString();
-      notifyListeners();
-    }
+  // Clear all data (logout gibi durumlarda)
+  void clearData() {
+    _contactInfo = null;
+    _isLoading = false;
+    _error = null;
+    notifyListeners();
   }
 }
