@@ -1,8 +1,8 @@
 import 'package:cv/pages/contact/contact_page.dart';
-import 'package:cv/pages/experience_page.dart';
+import 'package:cv/pages/experience/experience_page.dart';
 import 'package:cv/pages/generator/resume_generator_page.dart';
 import 'package:cv/pages/profile/profile_page.dart';
-import 'package:cv/pages/project_page.dart';
+import 'package:cv/pages/project/project_page.dart';
 
 import 'package:cv/pages/skills/skills_page.dart';
 import 'package:flutter/material.dart';

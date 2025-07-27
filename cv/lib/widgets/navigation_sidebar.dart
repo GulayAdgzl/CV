@@ -1,4 +1,4 @@
-import 'package:cv/utils/AppIcons.dart';
+import 'package:cv/core/utils/AppIcons.dart';
 import 'package:cv/widgets/navigation_menu_widget.dart';
 import 'package:flutter/material.dart';
 

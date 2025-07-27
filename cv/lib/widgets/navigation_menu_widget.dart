@@ -1,4 +1,4 @@
-import 'package:cv/theme/app_colors.dart';
+import 'package:cv/const/app_colors.dart';
 import 'package:cv/widgets/svg_loader.dart';
 import 'package:flutter/material.dart';
 

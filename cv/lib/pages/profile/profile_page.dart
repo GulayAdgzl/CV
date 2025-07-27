@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'package:cv/pages/profile/profile_provider.dart';
-import 'package:cv/theme/app_colors.dart';
+import 'package:cv/const/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart'; // AppShimmer yerine Shimmer paketi

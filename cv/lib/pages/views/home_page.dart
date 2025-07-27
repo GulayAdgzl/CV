@@ -1,4 +1,4 @@
-import 'package:cv/controller/firebase_controller.dart';
+import 'package:cv/services/firebase_controller.dart';
 import 'package:cv/providers/navigation_provider.dart';
 import 'package:cv/widgets/main_content_tabs.dart';
 import 'package:cv/widgets/navigation_sidebar.dart';

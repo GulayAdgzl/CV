@@ -1,4 +1,4 @@
-import 'package:cv/controller/firebase_controller.dart';
+import 'package:cv/services/firebase_controller.dart';
 import 'package:flutter/foundation.dart';
 
 class ProfileProvider extends ChangeNotifier {

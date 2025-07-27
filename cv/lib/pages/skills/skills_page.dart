@@ -1,10 +1,11 @@
-import 'package:cv/core/gradient_theme_extension.dart';
+import 'package:cv/core/theme/gradient_theme_extension.dart';
 import 'package:cv/pages/skills/widgets/build_progress_indicator.dart';
 import 'package:cv/pages/skills/widgets/build_skill_card.dart';
 
 import 'package:cv/pages/skills/widgets/build_swipe_controls.dart';
+import 'package:cv/const/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:cv/controller/firebase_controller.dart';
+import 'package:cv/services/firebase_controller.dart';
 import 'package:provider/provider.dart';
 import 'package:swipe_cards/swipe_cards.dart';
 
@@ -27,10 +28,6 @@ class _SkillsPageState extends State<SkillsPage> with TickerProviderStateMixin {
   int currentIndex = 0;
 
   // Gradient renkleri - GradientTheme null hatası için fallback
-  final List<Color> _gradientColors = [
-    const Color(0xFF667eea),
-    const Color(0xFF764ba2),
-  ];
 
   @override
   void initState() {
@@ -266,11 +263,10 @@ class _SkillsPageState extends State<SkillsPage> with TickerProviderStateMixin {
             LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
-              colors: _gradientColors,
+              colors: AppColors.incomesGradient,
             );
 
     return Scaffold(
-      backgroundColor: Colors.transparent,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         title: const Text(

@@ -1,5 +1,6 @@
 import 'package:cv/const/constant.dart';
 import 'package:cv/pages/skills/widgets/build_action_button.dart';
+import 'package:cv/const/app_colors.dart';
 import 'package:flutter/material.dart';
 
 import 'dart:convert';
@@ -7,7 +8,6 @@ import 'package:http/http.dart' as http;
 import 'package:firebase_database/firebase_database.dart';
 
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 
 import 'package:url_launcher/url_launcher.dart';
@@ -255,7 +255,7 @@ Please format it as a complete email with proper greeting, body paragraphs, and 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF0F172A),
+      backgroundColor: AppColors.mints,
       appBar: AppBar(
         title: const Text(
           "AI Introduction Letter",
@@ -264,7 +264,7 @@ Please format it as a complete email with proper greeting, body paragraphs, and 
             fontSize: 20,
           ),
         ),
-        backgroundColor: const Color(0xFF1E293B),
+        backgroundColor: AppColors.mints,
         foregroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,

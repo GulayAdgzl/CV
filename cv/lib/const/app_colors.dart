@@ -73,6 +73,12 @@ class AppColors {
     Color(0xFF95E6A9),
   ];
 
+  static const List<Color> incomesGradient = [
+    Color.fromARGB(255, 211, 239, 220),
+    Color.fromARGB(255, 224, 229, 225),
+  ];
+  static const Color mints = Color.fromARGB(255, 211, 239, 220);
+
   static const List<Color> expenseGradient = [
     Color(0xFFFFAEBC),
     Color(0xFFFF8FA1),

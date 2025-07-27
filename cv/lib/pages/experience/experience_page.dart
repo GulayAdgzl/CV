@@ -1,4 +1,5 @@
-import 'package:cv/controller/firebase_controller.dart';
+import 'package:cv/services/firebase_controller.dart';
+import 'package:cv/const/app_colors.dart';
 import 'package:cv/widgets/experince_item_card.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +18,7 @@ class ExperiencePage extends StatelessWidget {
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
-          colors: [Color(0xFFE3F2FD), Color(0xFFFFFFFF)],
+          colors: AppColors.incomesGradient,
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
         ),

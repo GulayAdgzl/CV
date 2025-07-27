@@ -1,10 +1,10 @@
-import 'package:cv/controller/firebase_controller.dart';
+import 'package:cv/services/firebase_controller.dart';
 import 'package:cv/firebase/firebase_init.dart';
 import 'package:cv/pages/contact/contact_provider.dart';
 import 'package:cv/pages/generator/resume_generator_provider.dart';
 import 'package:cv/pages/profile/profile_provider.dart';
 import 'package:cv/pages/views/home_page.dart';
-import 'package:cv/theme/app_theme.dart';
+import 'package:cv/core/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
@@ -14,8 +14,18 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initializeFirebase();
 
-  runApp(
-    MultiProvider(
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (_) => ContactProvider()),
+      ChangeNotifierProvider(create: (_) => ProfileProvider()),
+      ChangeNotifierProvider(create: (_) => SkillsProvider()),
+      ChangeNotifierProvider(create: (_) => ExperienceProvider()),
+      ChangeNotifierProvider(create: (_) => ProjectProvider()),
+      ChangeNotifierProvider(create: (_) => ResumeGeneratorProvider()),
+    ],
+    child: MyApp(),
+  )
+      /* MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => NavigationProvider()),
         Provider(create: (_) => FirebaseController()),
@@ -34,8 +44,8 @@ void main() async {
         ),
       ],
       child: const MyApp(),
-    ),
-  );
+    ),*/
+      );
 }
 
 class MyApp extends StatelessWidget {

@@ -1,5 +1,6 @@
-import 'package:cv/controller/firebase_controller.dart';
+import 'package:cv/services/firebase_controller.dart';
 import 'package:cv/model/project_model.dart';
+import 'package:cv/const/app_colors.dart';
 import 'package:cv/widgets/project_card.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
@@ -16,11 +17,10 @@ class ProjectPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Repositories"),
-        backgroundColor: Colors.white,
+        backgroundColor: AppColors.mints,
         elevation: 1,
-        foregroundColor: Colors.black,
       ),
-      backgroundColor: const Color(0xFFF6F8FA),
+      backgroundColor: AppColors.mints,
       body: FirebaseAnimatedList(
         query: firebase.getPortfolio(),
         defaultChild: const Center(child: CircularProgressIndicator()),
