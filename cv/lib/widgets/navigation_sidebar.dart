@@ -1,6 +1,7 @@
 import 'package:cv/core/utils/AppIcons.dart';
 import 'package:cv/widgets/navigation_menu_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class NavigationSidebar extends StatelessWidget {
   final int selectedIndex;
@@ -28,22 +29,31 @@ class NavigationSidebar extends StatelessWidget {
             decoration: const BoxDecoration(shape: BoxShape.circle),
             child: Image.asset("assets/pp.png"),
           ),
-          NavigationMenu(navProfile,
-              height: iconSize,
-              width: iconSize,
-              isSelected: selectedIndex == 0,
-              onClick: () => onMenuTap(0)),
-          NavigationMenu(navExperince,
+          NavigationMenu(
+            icon: "assets/profile.svg",
+            height: 20.0,
+            width: 20.0,
+            isSelected: selectedIndex == 0,
+            onClick: () => onMenuTap(0),
+          ),
+          NavigationMenu(
+            icon: "assets/profile.svg",
+            height: 20.0,
+            width: 20.0,
+            isSelected: selectedIndex == 0,
+            onClick: () => onMenuTap(1),
+          ),
+          /*   NavigationMenu(navExperince,
               height: iconSize,
               width: iconSize,
               isSelected: selectedIndex == 1,
-              onClick: () => onMenuTap(1)),
-          NavigationMenu(navProject,
+              onClick: () => onMenuTap(1)),*/
+          /* NavigationMenu(navProject,
               height: iconSize,
               width: iconSize,
               isSelected: selectedIndex == 2,
-              onClick: () => onMenuTap(2)),
-          NavigationMenu(navContact,
+              onClick: () => onMenuTap(2)),*/
+          /*   NavigationMenu(navContact,
               height: iconSize,
               width: iconSize,
               isSelected: selectedIndex == 3,
@@ -57,7 +67,7 @@ class NavigationSidebar extends StatelessWidget {
               height: iconSize,
               width: iconSize,
               isSelected: selectedIndex == 4,
-              onClick: () => onMenuTap(5)),
+              onClick: () => onMenuTap(5)),*/
         ],
       ),
     );

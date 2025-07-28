@@ -177,9 +177,9 @@
     },
     {
       "name": "flutter_svg",
-      "rootUri": "file:///C:/Users/System%20Bilgisayar/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_svg-2.1.0",
+      "rootUri": "file:///C:/Users/System%20Bilgisayar/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_svg-2.2.0",
       "packageUri": "lib/",
-      "languageVersion": "3.4"
+      "languageVersion": "3.6"
     },
     {
       "name": "flutter_test",
@@ -608,7 +608,7 @@
       "languageVersion": "3.6"
     }
   ],
-  "generated": "2025-07-02T19:36:26.739893Z",
+  "generated": "2025-07-28T10:23:00.259324Z",
   "generator": "pub",
   "generatorVersion": "3.6.1",
   "flutterRoot": "file:///C:/Program%20Files/flutter",

@@ -1,4 +1,5 @@
 import 'package:cv/pages/contact/contact_page.dart';
+import 'package:cv/pages/profile/profile_page.dart';
 import 'package:cv/services/firebase_controller.dart';
 import 'package:cv/firebase/firebase_init.dart';
 import 'package:cv/pages/contact/contact_provider.dart';
@@ -16,14 +17,16 @@ void main() async {
   await initializeFirebase();
 
   runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (_) => ContactProvider(FirebaseService()),
-        ),
-      ],
-      child: MaterialApp(home: ContactPage()),
-    ),
+    MultiProvider(providers: [
+      ChangeNotifierProvider(create: (_) => NavigationProvider()),
+      Provider(create: (_) => FirebaseController()),
+      ChangeNotifierProvider(
+        create: (_) => ContactProvider(FirebaseService()),
+      ),
+      ChangeNotifierProvider(
+        create: (_) => ProfileProvider(FirebaseService()),
+      ),
+    ], child: MyApp()),
   );
   /* MultiProvider(
       providers: [
