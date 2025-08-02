@@ -1,4 +1,3 @@
-import 'package:cv/const/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class ExperienceItemCard extends StatefulWidget {

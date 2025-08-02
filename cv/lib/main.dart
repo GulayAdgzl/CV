@@ -1,4 +1,5 @@
 import 'package:cv/pages/contact/contact_page.dart';
+import 'package:cv/pages/experience/experience_provider.dart';
 import 'package:cv/pages/profile/profile_page.dart';
 import 'package:cv/pages/project/project_provider.dart';
 import 'package:cv/pages/skills/skills_provider.dart';
@@ -50,6 +51,7 @@ void main() async {
               previous ?? SkillsProvider(firebaseService),
         ),
         ChangeNotifierProvider(create: (_) => ProjectProvider()),
+        ChangeNotifierProvider(create: (_) => ExperienceProvider()),
       ],
       child: MyApp(),
     ),

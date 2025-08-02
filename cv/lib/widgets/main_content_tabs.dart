@@ -30,6 +30,7 @@ class MainContentTabs extends StatelessWidget {
         ContactPage(),
         SkillsPage(),
         ProjectPage(),
+        ExperiencePage(),
         //ResumeGeneratorPage(),
       ],
     );
