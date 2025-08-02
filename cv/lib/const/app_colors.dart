@@ -4,7 +4,8 @@ class AppColors {
   // Ana renkler - Light
   static const Color yellow = Color(0xFFFBE7C6);
   static const Color mint = Color(0xFFB4F8C8);
-  static const Color tiffanyBlue = Color(0xFFA0E7E5);
+  static const Color tiffanyBlue = Color.fromARGB(255, 53, 204, 199);
+
   static const Color hotPink = Color(0xFFFFAEBC);
 
   // Ana renkler - Dark
