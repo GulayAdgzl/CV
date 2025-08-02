@@ -1,34 +1,35 @@
+import 'package:cv/pages/skills/skills_provider.dart';
 import 'package:cv/pages/skills/widgets/build_action_button.dart';
 import 'package:flutter/material.dart';
-import 'package:swipe_cards/swipe_cards.dart';
+import 'package:provider/provider.dart';
 
-late MatchEngine _matchEngine;
 Widget buildSwipeControls() {
-  return Container(
-    padding: const EdgeInsets.all(24),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        // Skip butonu
-        buildActionButton(
-          icon: Icons.close,
-          color: Colors.red.shade400,
-          label: "Skip",
-          onPressed: () {
-            _matchEngine.currentItem?.nope();
-          },
+  return Consumer<SkillsProvider>(
+    builder: (context, provider, child) {
+      return Container(
+        padding: const EdgeInsets.all(24),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            buildActionButton(
+              icon: Icons.close,
+              color: Colors.red.shade400,
+              label: "Skip",
+              onPressed: () {
+                provider.matchEngine?.currentItem?.nope();
+              },
+            ),
+            buildActionButton(
+              icon: Icons.favorite,
+              color: Colors.green.shade400,
+              label: "Liked",
+              onPressed: () {
+                provider.matchEngine?.currentItem?.like();
+              },
+            ),
+          ],
         ),
-
-        // Like butonu
-        buildActionButton(
-          icon: Icons.favorite,
-          color: Colors.green.shade400,
-          label: "Liked",
-          onPressed: () {
-            _matchEngine.currentItem?.like();
-          },
-        ),
-      ],
-    ),
+      );
+    },
   );
 }

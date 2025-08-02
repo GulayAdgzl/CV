@@ -1,5 +1,6 @@
 import 'package:cv/pages/skills/skills_provider.dart';
 import 'package:cv/pages/skills/widgets/build_progress_indicator.dart';
+import 'package:cv/pages/skills/widgets/build_swipe_controls.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:swipe_cards/swipe_cards.dart';
@@ -271,88 +272,6 @@ class _SkillsPageState extends State<SkillsPage> with TickerProviderStateMixin {
                 const SizedBox(height: 32),
               ],
             ),
-          ),
-        );
-      },
-    );
-  }
-
-  Widget buildActionButton({
-    required IconData icon,
-    required Color color,
-    required String label,
-    required VoidCallback onPressed,
-  }) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            color: color,
-            borderRadius: BorderRadius.circular(50),
-            boxShadow: [
-              BoxShadow(
-                color: color.withOpacity(0.3),
-                blurRadius: 15,
-                spreadRadius: 2,
-                offset: const Offset(0, 5),
-              ),
-            ],
-          ),
-          child: Material(
-            color: Colors.transparent,
-            child: InkWell(
-              borderRadius: BorderRadius.circular(50),
-              onTap: onPressed,
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Icon(
-                  icon,
-                  color: Colors.white,
-                  size: 28,
-                ),
-              ),
-            ),
-          ),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          label,
-          style: TextStyle(
-            color: Colors.white.withOpacity(0.9),
-            fontSize: 12,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget buildSwipeControls() {
-    return Consumer<SkillsProvider>(
-      builder: (context, provider, child) {
-        return Container(
-          padding: const EdgeInsets.all(24),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              buildActionButton(
-                icon: Icons.close,
-                color: Colors.red.shade400,
-                label: "Skip",
-                onPressed: () {
-                  provider.matchEngine?.currentItem?.nope();
-                },
-              ),
-              buildActionButton(
-                icon: Icons.favorite,
-                color: Colors.green.shade400,
-                label: "Liked",
-                onPressed: () {
-                  provider.matchEngine?.currentItem?.like();
-                },
-              ),
-            ],
           ),
         );
       },
