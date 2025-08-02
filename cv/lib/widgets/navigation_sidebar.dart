@@ -50,6 +50,13 @@ class NavigationSidebar extends StatelessWidget {
             isSelected: selectedIndex == 0,
             onClick: () => onMenuTap(2),
           ),
+          NavigationMenu(
+            icon: "assets/profile.svg",
+            height: 20.0,
+            width: 20.0,
+            isSelected: selectedIndex == 0,
+            onClick: () => onMenuTap(3),
+          ),
           /*   NavigationMenu(navExperince,
               height: iconSize,
               width: iconSize,

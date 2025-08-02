@@ -1,5 +1,6 @@
 import 'package:cv/pages/contact/contact_page.dart';
 import 'package:cv/pages/profile/profile_page.dart';
+import 'package:cv/pages/project/project_provider.dart';
 import 'package:cv/pages/skills/skills_provider.dart';
 import 'package:cv/services/firebase_controller.dart';
 import 'package:cv/firebase/firebase_init.dart';
@@ -48,6 +49,7 @@ void main() async {
           update: (context, firebaseService, previous) =>
               previous ?? SkillsProvider(firebaseService),
         ),
+        ChangeNotifierProvider(create: (_) => ProjectProvider()),
       ],
       child: MyApp(),
     ),
