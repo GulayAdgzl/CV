@@ -126,16 +126,9 @@ class _ResumeGeneratorPageState extends State<ResumeGeneratorPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.mints,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text(
-          "AI Introduction Letter",
-          style: TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: 20,
-          ),
-        ),
-        backgroundColor: AppColors.mints,
+        backgroundColor: Colors.white,
         foregroundColor: Colors.white,
         elevation: 0,
         centerTitle: true,
@@ -215,7 +208,7 @@ class _ResumeGeneratorPageState extends State<ResumeGeneratorPage>
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
                           colors: [
-                            Color(0xFF1E293B),
+                            Color.fromARGB(255, 184, 195, 213),
                             Color(0xFF334155),
                           ],
                         ),

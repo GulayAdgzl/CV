@@ -78,7 +78,7 @@ class AppColors {
     Color.fromARGB(255, 211, 239, 220),
     Color.fromARGB(255, 224, 229, 225),
   ];
-  static const Color mints = Color.fromARGB(255, 211, 239, 220);
+  static const Color mints = Color.fromARGB(255, 162, 228, 183);
 
   static const List<Color> expenseGradient = [
     Color(0xFFFFAEBC),

@@ -20,11 +20,7 @@ class ExperiencePage extends StatelessWidget {
 
     return Container(
       decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          colors: AppColors.incomesGradient,
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-        ),
+        color: AppColors.background,
       ),
       child: SingleChildScrollView(
         padding:
@@ -32,29 +28,10 @@ class ExperiencePage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            _buildHeader(),
-            const SizedBox(height: 16),
             const _ExperienceList(),
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildHeader() {
-    return Row(
-      children: [
-        const Icon(Icons.work_outline, color: Colors.blue, size: 28),
-        const SizedBox(width: 10),
-        Text(
-          "Professional Experience",
-          style: TextStyle(
-            fontSize: 22,
-            fontWeight: FontWeight.bold,
-            color: Colors.blue[900],
-          ),
-        ),
-      ],
     );
   }
 }
@@ -89,106 +66,6 @@ class _ExperienceList extends StatelessWidget {
             }
             return const SizedBox.shrink();
           },
-        );
-      },
-    );
-  }
-}
-
-// Alternative: Manual ListView with Provider (if you prefer manual control)
-class _ExperienceListManual extends StatefulWidget {
-  const _ExperienceListManual();
-
-  @override
-  State<_ExperienceListManual> createState() => _ExperienceListManualState();
-}
-
-class _ExperienceListManualState extends State<_ExperienceListManual> {
-  @override
-  void initState() {
-    super.initState();
-    // Load experiences on widget init
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<ExperienceProvider>().loadExperiences();
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Consumer<ExperienceProvider>(
-      builder: (context, experienceProvider, child) {
-        // Loading state
-        if (experienceProvider.isLoading) {
-          return const Center(
-            child: Padding(
-              padding: EdgeInsets.all(32.0),
-              child: CircularProgressIndicator(),
-            ),
-          );
-        }
-
-        // Error state
-        if (experienceProvider.error != null) {
-          return Center(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                children: [
-                  Icon(Icons.error, size: 48, color: Colors.red.shade300),
-                  const SizedBox(height: 16),
-                  Text(
-                    experienceProvider.error!,
-                    style: const TextStyle(color: Colors.red),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 16),
-                  ElevatedButton(
-                    onPressed: () {
-                      experienceProvider.clearError();
-                      experienceProvider.refreshExperiences();
-                    },
-                    child: const Text('Tekrar Dene'),
-                  ),
-                ],
-              ),
-            ),
-          );
-        }
-
-        // Empty state
-        if (!experienceProvider.hasExperiences) {
-          return const Center(
-            child: Padding(
-              padding: EdgeInsets.all(32.0),
-              child: Column(
-                children: [
-                  Icon(Icons.work_off, size: 48, color: Colors.grey),
-                  SizedBox(height: 16),
-                  Text(
-                    'Henüz deneyim eklenmemiş',
-                    style: TextStyle(fontSize: 16, color: Colors.grey),
-                  ),
-                ],
-              ),
-            ),
-          );
-        }
-
-        // Experiences list
-        return Column(
-          children: experienceProvider.experiences.asMap().entries.map((entry) {
-            final index = entry.key;
-            final experience = entry.value;
-
-            return ExperienceItemCard(
-              date: experience.duration,
-              company: experience.company,
-              descriptionList: experience.description,
-            )
-                .animate(delay: (index * 100).ms)
-                .fadeIn(duration: 500.ms)
-                .slideY(begin: 0.2, end: 0, duration: 400.ms);
-          }).toList(),
         );
       },
     );

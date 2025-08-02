@@ -313,7 +313,7 @@ class _SkillsPageState extends State<SkillsPage> with TickerProviderStateMixin {
       begin: Alignment.topLeft,
       end: Alignment.bottomRight,
       colors: [
-        const Color.fromARGB(255, 129, 148, 169),
+        const Color.fromARGB(255, 217, 208, 219),
         const Color.fromARGB(255, 217, 208, 219),
       ],
     );
