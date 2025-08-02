@@ -24,14 +24,11 @@ class MainContentTabs extends StatelessWidget {
       controller: controller,
       children: [
         ProfilePage(),
-        /* ExperiencePage(),
-        ProjectPage(),
-        SkillsPage(),*/
         ContactPage(),
         SkillsPage(),
         ProjectPage(),
         ExperiencePage(),
-        //ResumeGeneratorPage(),
+        ResumeGeneratorPage(),
       ],
     );
   }

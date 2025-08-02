@@ -1,17 +1,13 @@
-import 'package:cv/const/constant.dart';
-import 'package:cv/pages/skills/widgets/build_action_button.dart';
+import 'package:cv/pages/generator/resume_generator_provider.dart';
 import 'package:cv/const/app_colors.dart';
 import 'package:flutter/material.dart';
-
-import 'dart:convert';
-import 'package:http/http.dart' as http;
-import 'package:firebase_database/firebase_database.dart';
-
 import 'package:flutter/services.dart';
 import 'package:share_plus/share_plus.dart';
 
 import 'package:url_launcher/url_launcher.dart';
-/*
+
+import 'package:provider/provider.dart';
+
 class ResumeGeneratorPage extends StatefulWidget {
   const ResumeGeneratorPage({super.key});
 
@@ -21,17 +17,8 @@ class ResumeGeneratorPage extends StatefulWidget {
 
 class _ResumeGeneratorPageState extends State<ResumeGeneratorPage>
     with TickerProviderStateMixin {
-  final DatabaseReference _aboutRef =
-      FirebaseDatabase.instance.ref().child("Portfolio/about_us");
-  final DatabaseReference _skillsRef =
-      FirebaseDatabase.instance.ref().child("Portfolio/skills");
-
-  String? _generatedText;
-  bool _loading = false;
   late AnimationController _animationController;
   late Animation<double> _fadeAnimation;
-
-  // Move API key to a secure location or environment variables in production
 
   @override
   void initState() {
@@ -47,7 +34,11 @@ class _ResumeGeneratorPageState extends State<ResumeGeneratorPage>
       parent: _animationController,
       curve: Curves.easeInOut,
     ));
-    _generateWithGemini();
+
+    // Auto-generate on page load
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<ResumeGeneratorProvider>().generateResume();
+    });
   }
 
   @override
@@ -56,149 +47,11 @@ class _ResumeGeneratorPageState extends State<ResumeGeneratorPage>
     super.dispose();
   }
 
-  Future<void> _generateWithGemini() async {
-    setState(() {
-      _loading = true;
-      _generatedText = null;
-    });
-
-    try {
-      final aboutSnap = await _aboutRef.get();
-      final skillsSnap = await _skillsRef.get();
-
-      final about = aboutSnap.value as Map?;
-      final skillsData = skillsSnap.value;
-      String skills = '';
-
-      // Process skills data
-      if (skillsData != null) {
-        if (skillsData is List) {
-          skills = skillsData.join(', ');
-        } else if (skillsData is Map) {
-          skills = skillsData.keys.join(', ');
-        }
-      }
-
-      if (about == null) {
-        throw Exception('About information not found');
-      }
-
-      final name = about['name'] ?? 'Unknown';
-      final title = about['designation'] ?? 'Developer';
-      final location = about['location'] ?? 'Unknown Location';
-      final email = about['email'] ?? '';
-      final github = about['github'] ?? '';
-
-      final prompt = """
-Write a professional, warm, and engaging self-introduction email for a job application. The email should be concise yet comprehensive, highlighting key qualifications and expressing genuine interest in opportunities.
-
-Personal Information:
-- Name: $name
-- Professional Title: $title
-- Location: $location
-- Email: $email
-- GitHub: $github
-- Technical Skills: $skills
-
-Please format it as a complete email with proper greeting, body paragraphs, and professional closing. Make it personable but professional, and ensure it showcases both technical expertise and soft skills.
-""";
-
-      // Try different model names in order of preference
-      final modelNames = [
-        'gemini-1.5-flash',
-        'gemini-1.5-pro',
-        'gemini-2.0-flash-experimental',
-        'gemini-pro'
-      ];
-
-      http.Response? response;
-      String? lastError;
-
-      for (String modelName in modelNames) {
-        try {
-          response = await http.post(
-            Uri.parse(
-                "https://generativelanguage.googleapis.com/v1beta/models/$modelName:generateContent?key=$geminiApiKey"),
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: jsonEncode({
-              "contents": [
-                {
-                  "parts": [
-                    {"text": prompt}
-                  ]
-                }
-              ],
-              "generationConfig": {
-                "temperature": 0.7,
-                "topK": 40,
-                "topP": 0.95,
-                "maxOutputTokens": 1024,
-              }
-            }),
-          );
-
-          if (response.statusCode == 200) {
-            break; // Success, exit the loop
-          } else {
-            final errorBody = jsonDecode(response.body);
-            lastError = '${errorBody['error']['message']}';
-            if (response.statusCode != 404) {
-              // If it's not a "model not found" error, don't try other models
-              break;
-            }
-          }
-        } catch (e) {
-          lastError = e.toString();
-          continue; // Try next model
-        }
-      }
-
-      if (response == null || response.statusCode != 200) {
-        throw Exception('All models failed. Last error: $lastError');
-      }
-
-      final result = jsonDecode(response.body);
-
-      // Correct path to extract generated text from Gemini response
-      if (result['candidates'] != null &&
-          result['candidates'].isNotEmpty &&
-          result['candidates'][0]['content'] != null &&
-          result['candidates'][0]['content']['parts'] != null &&
-          result['candidates'][0]['content']['parts'].isNotEmpty) {
-        final text = result['candidates'][0]['content']['parts'][0]['text'];
-        setState(() {
-          _generatedText = text.trim();
-          _loading = false;
-        });
-        _animationController.forward();
-      } else {
-        throw Exception('Unexpected response format');
-      }
-    } catch (e) {
-      setState(() {
-        _generatedText =
-            "Failed to generate content. Error: $e\n\nPlease check your internet connection and API key.\n\nTip: Make sure your API key has access to Gemini models.";
-        _loading = false;
-      });
-      _animationController.forward();
-
-      // Show error snackbar
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text("Generation failed: ${e.toString()}"),
-            backgroundColor: Colors.red.shade600,
-            behavior: SnackBarBehavior.floating,
-            duration: const Duration(seconds: 4),
-          ),
-        );
-      }
-    }
+  void _handleGeneration() {
+    context.read<ResumeGeneratorProvider>().generateResume();
   }
 
-  void sendEmail(String content) async {
+  void _sendEmail(String content) async {
     try {
       final subject = Uri.encodeComponent(
           "Mobile Developer Application – ${DateTime.now().year}");
@@ -223,33 +76,51 @@ Please format it as a complete email with proper greeting, body paragraphs, and 
     }
   }
 
-  void _copyToClipboard() {
-    if (_generatedText != null) {
-      Clipboard.setData(ClipboardData(text: _generatedText!));
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: const Row(
-            children: [
-              Icon(Icons.check_circle, color: Colors.white, size: 20),
-              SizedBox(width: 8),
-              Text("Copied to clipboard!"),
-            ],
-          ),
-          backgroundColor: Colors.green.shade600,
-          behavior: SnackBarBehavior.floating,
-          duration: const Duration(seconds: 2),
+  void _copyToClipboard(String text) {
+    Clipboard.setData(ClipboardData(text: text));
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: const Row(
+          children: [
+            Icon(Icons.check_circle, color: Colors.white, size: 20),
+            SizedBox(width: 8),
+            Text("Copied to clipboard!"),
+          ],
         ),
-      );
-    }
+        backgroundColor: Colors.green.shade600,
+        behavior: SnackBarBehavior.floating,
+        duration: const Duration(seconds: 2),
+      ),
+    );
   }
 
-  void _shareContent() {
-    if (_generatedText != null) {
-      Share.share(
-        _generatedText!,
-        subject: "AI Generated Introduction Letter",
-      );
-    }
+  void _shareContent(String text) {
+    Share.share(
+      text,
+      subject: "AI Generated Introduction Letter",
+    );
+  }
+
+  Widget _buildActionButton({
+    required IconData icon,
+    required String label,
+    required VoidCallback onPressed,
+    required Color color,
+  }) {
+    return ElevatedButton.icon(
+      onPressed: onPressed,
+      icon: Icon(icon, size: 18),
+      label: Text(label),
+      style: ElevatedButton.styleFrom(
+        backgroundColor: color,
+        foregroundColor: Colors.white,
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        elevation: 2,
+      ),
+    );
   }
 
   @override
@@ -269,19 +140,48 @@ Please format it as a complete email with proper greeting, body paragraphs, and 
         elevation: 0,
         centerTitle: true,
         actions: [
-          IconButton(
-            onPressed: _loading ? null : _generateWithGemini,
-            icon: AnimatedRotation(
-              turns: _loading ? 1 : 0,
-              duration: const Duration(seconds: 1),
-              child: const Icon(Icons.refresh),
-            ),
-            tooltip: "Regenerate",
+          Consumer<ResumeGeneratorProvider>(
+            builder: (context, provider, child) {
+              return IconButton(
+                onPressed: provider.state.isLoading ? null : _handleGeneration,
+                icon: AnimatedRotation(
+                  turns: provider.state.isLoading ? 1 : 0,
+                  duration: const Duration(seconds: 1),
+                  child: const Icon(Icons.refresh),
+                ),
+                tooltip: "Regenerate",
+              );
+            },
           ),
         ],
       ),
-      body: _loading
-          ? const Center(
+      body: Consumer<ResumeGeneratorProvider>(
+        builder: (context, provider, child) {
+          // Listen to state changes for animations
+          if (provider.state.hasContent && !provider.state.isLoading) {
+            _animationController.forward();
+          } else {
+            _animationController.reset();
+          }
+
+          // Show error snackbar if there's an error
+          if (provider.state.hasError) {
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content:
+                      Text("Generation failed: ${provider.state.errorMessage}"),
+                  backgroundColor: Colors.red.shade600,
+                  behavior: SnackBarBehavior.floating,
+                  duration: const Duration(seconds: 4),
+                ),
+              );
+              provider.clearError();
+            });
+          }
+
+          if (provider.state.isLoading) {
+            return const Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -298,85 +198,91 @@ Please format it as a complete email with proper greeting, body paragraphs, and 
                   ),
                 ],
               ),
-            )
-          : Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                children: [
-                  Expanded(
-                    child: FadeTransition(
-                      opacity: _fadeAnimation,
-                      child: Container(
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                            colors: [
-                              const Color(0xFF1E293B),
-                              const Color(0xFF334155),
-                            ],
-                          ),
-                          borderRadius: BorderRadius.circular(16),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.3),
-                              blurRadius: 10,
-                              offset: const Offset(0, 4),
-                            ),
+            );
+          }
+
+          return Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              children: [
+                Expanded(
+                  child: FadeTransition(
+                    opacity: _fadeAnimation,
+                    child: Container(
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        gradient: const LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [
+                            Color(0xFF1E293B),
+                            Color(0xFF334155),
                           ],
                         ),
-                        child: SingleChildScrollView(
-                          padding: const EdgeInsets.all(20),
-                          child: SelectableText(
-                            _generatedText ?? "Failed to generate content.",
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 15,
-                              height: 1.6,
-                              letterSpacing: 0.3,
-                            ),
+                        borderRadius: BorderRadius.circular(16),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.3),
+                            blurRadius: 10,
+                            offset: const Offset(0, 4),
+                          ),
+                        ],
+                      ),
+                      child: SingleChildScrollView(
+                        padding: const EdgeInsets.all(20),
+                        child: SelectableText(
+                          provider.state.generatedText ??
+                              (provider.state.hasError
+                                  ? "Failed to generate content. ${provider.state.errorMessage}"
+                                  : "No content generated yet."),
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 15,
+                            height: 1.6,
+                            letterSpacing: 0.3,
                           ),
                         ),
                       ),
                     ),
                   ),
-                  const SizedBox(height: 20),
+                ),
+                const SizedBox(height: 20),
+                if (provider.state.hasContent)
                   AnimatedContainer(
                     duration: const Duration(milliseconds: 300),
                     child: Wrap(
                       spacing: 12,
                       runSpacing: 12,
                       children: [
-                        buildActionButton(
+                        _buildActionButton(
                           icon: Icons.copy_rounded,
                           label: "Copy",
-                          onPressed: _copyToClipboard,
+                          onPressed: () =>
+                              _copyToClipboard(provider.state.generatedText!),
                           color: Colors.blue,
                         ),
-                        buildActionButton(
+                        _buildActionButton(
                           icon: Icons.share_rounded,
                           label: "Share",
-                          onPressed: _shareContent,
+                          onPressed: () =>
+                              _shareContent(provider.state.generatedText!),
                           color: Colors.green,
                         ),
-                        buildActionButton(
+                        _buildActionButton(
                           icon: Icons.email_rounded,
                           label: "Email",
-                          onPressed: () {
-                            if (_generatedText != null) {
-                              sendEmail(_generatedText!);
-                            }
-                          },
+                          onPressed: () =>
+                              _sendEmail(provider.state.generatedText!),
                           color: Colors.orange,
                         ),
                       ],
                     ),
                   ),
-                ],
-              ),
+              ],
             ),
+          );
+        },
+      ),
     );
   }
 }
-*/

@@ -1,6 +1,4 @@
-import 'package:cv/pages/contact/contact_page.dart';
 import 'package:cv/pages/experience/experience_provider.dart';
-import 'package:cv/pages/profile/profile_page.dart';
 import 'package:cv/pages/project/project_provider.dart';
 import 'package:cv/pages/skills/skills_provider.dart';
 import 'package:cv/services/firebase_controller.dart';
@@ -52,31 +50,12 @@ void main() async {
         ),
         ChangeNotifierProvider(create: (_) => ProjectProvider()),
         ChangeNotifierProvider(create: (_) => ExperienceProvider()),
+        ChangeNotifierProvider(create: (_) => ResumeGeneratorProvider()),
       ],
       child: MyApp(),
     ),
   );
 }
-/* MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => NavigationProvider()),
-        Provider(create: (_) => FirebaseController()),
-
-        // ProfileProvider'ı ekleyin
-        ChangeNotifierProvider<ProfileProvider>(
-          create: (context) => ProfileProvider(
-              Provider.of<FirebaseController>(context, listen: false)),
-        ),
-        ChangeNotifierProvider<ContactProvider>(
-          create: (context) => ContactProvider(
-              Provider.of<FirebaseController>(context, listen: false)),
-        ),
-        ChangeNotifierProvider<ResumeGeneratorProvider>(
-          create: (_) => ResumeGeneratorProvider(),
-        ),
-      ],
-      child: const MyApp(),
-    ),*/
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
