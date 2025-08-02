@@ -1,5 +1,6 @@
 import 'package:cv/pages/contact/contact_page.dart';
 import 'package:cv/pages/profile/profile_page.dart';
+import 'package:cv/pages/skills/skills_provider.dart';
 import 'package:cv/services/firebase_controller.dart';
 import 'package:cv/firebase/firebase_init.dart';
 import 'package:cv/pages/contact/contact_provider.dart';
@@ -17,18 +18,42 @@ void main() async {
   await initializeFirebase();
 
   runApp(
-    MultiProvider(providers: [
-      ChangeNotifierProvider(create: (_) => NavigationProvider()),
-      Provider(create: (_) => FirebaseController()),
-      ChangeNotifierProvider(
-        create: (_) => ContactProvider(FirebaseService()),
-      ),
-      ChangeNotifierProvider(
-        create: (_) => ProfileProvider(FirebaseService()),
-      ),
-    ], child: MyApp()),
+    MultiProvider(
+      providers: [
+        // Navigation Provider
+        ChangeNotifierProvider(create: (_) => NavigationProvider()),
+
+        // Firebase Services - Önce FirebaseService'i tanımlayın
+        Provider<FirebaseController>(create: (_) => FirebaseController()),
+        Provider<FirebaseService>(
+          create: (_) => FirebaseService(),
+          lazy: false, // Hemen oluştur
+        ),
+
+        // Contact Provider
+        ChangeNotifierProvider(
+          create: (_) => ContactProvider(FirebaseService()),
+        ),
+
+        // Profile Provider
+        ChangeNotifierProvider(
+          create: (_) => ProfileProvider(FirebaseService()),
+        ),
+
+        // Skills Provider - FirebaseService'e bağlı
+        ChangeNotifierProxyProvider<FirebaseService, SkillsProvider>(
+          create: (context) => SkillsProvider(
+            Provider.of<FirebaseService>(context, listen: false),
+          ),
+          update: (context, firebaseService, previous) =>
+              previous ?? SkillsProvider(firebaseService),
+        ),
+      ],
+      child: MyApp(),
+    ),
   );
-  /* MultiProvider(
+}
+/* MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => NavigationProvider()),
         Provider(create: (_) => FirebaseController()),
@@ -48,7 +73,6 @@ void main() async {
       ],
       child: const MyApp(),
     ),*/
-}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
