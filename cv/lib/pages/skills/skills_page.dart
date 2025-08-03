@@ -321,13 +321,6 @@ class _SkillsPageState extends State<SkillsPage> with TickerProviderStateMixin {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: const Text(
-          "Skills",
-          style: TextStyle(
-            fontWeight: FontWeight.w600,
-            fontSize: 22,
-          ),
-        ),
         backgroundColor: Colors.transparent,
         foregroundColor: Colors.white,
         elevation: 0,

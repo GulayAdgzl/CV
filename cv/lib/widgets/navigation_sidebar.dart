@@ -1,3 +1,4 @@
+import 'package:cv/const/app_colors.dart';
 import 'package:cv/core/utils/AppIcons.dart';
 import 'package:cv/widgets/navigation_menu_widget.dart';
 import 'package:flutter/material.dart';
@@ -30,72 +31,47 @@ class NavigationSidebar extends StatelessWidget {
             child: Image.asset("assets/pp.png"),
           ),
           NavigationMenu(
-            icon: "assets/profile.svg",
+            icon: Icon(Icons.person, color: AppColors.tiffanyBlue),
             height: 20.0,
             width: 20.0,
             isSelected: selectedIndex == 0,
             onClick: () => onMenuTap(0),
           ),
           NavigationMenu(
-            icon: "assets/profile.svg",
+            icon: Icon(Icons.contact_emergency, color: AppColors.tiffanyBlue),
             height: 20.0,
             width: 20.0,
             isSelected: selectedIndex == 0,
             onClick: () => onMenuTap(1),
           ),
           NavigationMenu(
-            icon: "assets/profile.svg",
+            icon: Icon(Icons.add_business, color: AppColors.tiffanyBlue),
             height: 20.0,
             width: 20.0,
             isSelected: selectedIndex == 0,
             onClick: () => onMenuTap(2),
           ),
           NavigationMenu(
-            icon: "assets/profile.svg",
+            icon: Icon(Icons.burst_mode_sharp, color: AppColors.tiffanyBlue),
             height: 20.0,
             width: 20.0,
             isSelected: selectedIndex == 0,
             onClick: () => onMenuTap(3),
           ),
           NavigationMenu(
-            icon: "assets/profile.svg",
+            icon: Icon(Icons.business_rounded, color: AppColors.tiffanyBlue),
             height: 20.0,
             width: 20.0,
             isSelected: selectedIndex == 0,
             onClick: () => onMenuTap(4),
           ),
           NavigationMenu(
-            icon: "assets/profile.svg",
+            icon: Icon(Icons.air_sharp, color: AppColors.tiffanyBlue),
             height: 20.0,
             width: 20.0,
             isSelected: selectedIndex == 0,
             onClick: () => onMenuTap(5),
           ),
-          /*   NavigationMenu(navExperince,
-              height: iconSize,
-              width: iconSize,
-              isSelected: selectedIndex == 1,
-              onClick: () => onMenuTap(1)),*/
-          /* NavigationMenu(navProject,
-              height: iconSize,
-              width: iconSize,
-              isSelected: selectedIndex == 2,
-              onClick: () => onMenuTap(2)),*/
-          /*   NavigationMenu(navContact,
-              height: iconSize,
-              width: iconSize,
-              isSelected: selectedIndex == 3,
-              onClick: () => onMenuTap(3)),
-          NavigationMenu(navEducation,
-              height: iconSize,
-              width: iconSize,
-              isSelected: selectedIndex == 4,
-              onClick: () => onMenuTap(4)),
-          NavigationMenu(navGene,
-              height: iconSize,
-              width: iconSize,
-              isSelected: selectedIndex == 4,
-              onClick: () => onMenuTap(5)),*/
         ],
       ),
     );
