@@ -2,7 +2,7 @@
     name="release"
     package="io.flutter.plugins.firebase.core"
     minSdkVersion="21"
-    targetSdkVersion="21"
+    targetSdkVersion="34"
     mergedManifest="C:\Users\System Bilgisayar\CV\cv\build\firebase_core\intermediates\merged_manifest\release\AndroidManifest.xml"
     proguardFiles="C:\Users\System Bilgisayar\CV\cv\build\firebase_core\intermediates\default_proguard_files\global\proguard-android.txt-8.2.1"
     partialResultsDir="C:\Users\System Bilgisayar\CV\cv\build\firebase_core\intermediates\lint_vital_partial_results\release\out"

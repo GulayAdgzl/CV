@@ -151,6 +151,27 @@
 
 
 # End of content from C:\Users\System Bilgisayar\CV\cv\build\app\intermediates\aapt_proguard_file\release\aapt_rules.txt
+# The proguard configuration file for the following section is C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\183ccc4775f6503a77dc0be5a374b86c\transformed\jetified-firebase-firestore-25.1.4\proguard.txt
+# Needed for DNS resolution.  Present in OpenJDK, but not Android
+-dontwarn javax.naming.**
+
+# Don't warn about checkerframework
+#
+# Guava uses the checkerframework and the annotations
+# can safely be ignored at runtime.
+-dontwarn org.checkerframework.**
+
+# Guava warnings:
+-dontwarn java.lang.ClassValue
+-dontwarn com.google.j2objc.annotations.Weak
+-dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
+-dontwarn javax.lang.model.element.Modifier
+
+# Okhttp warnings.
+-dontwarn okio.**
+-dontwarn com.google.j2objc.annotations.**
+
+# End of content from C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\183ccc4775f6503a77dc0be5a374b86c\transformed\jetified-firebase-firestore-25.1.4\proguard.txt
 # The proguard configuration file for the following section is C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\e6ea119707449d1ba05a43d45dbd9825\transformed\jetified-window-1.2.0\proguard.txt
 # Copyright (C) 2020 The Android Open Source Project
 #
@@ -300,7 +321,7 @@
 }
 
 # End of content from C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\a84afc127705b84536d4ac7e690e8d79\transformed\jetified-savedstate-1.2.1\proguard.txt
-# The proguard configuration file for the following section is C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\451ea5952c7de34c6ef1c090d825cb62\transformed\rules\lib\META-INF\com.android.tools\r8-from-1.6.0\coroutines.pro
+# The proguard configuration file for the following section is C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\a1698a2700619183c3c374415805a11f\transformed\rules\lib\META-INF\com.android.tools\r8-from-1.6.0\coroutines.pro
 # Allow R8 to optimize away the FastServiceLoader.
 # Together with ServiceLoader optimization in R8
 # this results in direct instantiation when loading Dispatchers.Main
@@ -324,8 +345,8 @@
     boolean getRECOVER_STACK_TRACES() return false;
 }
 
-# End of content from C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\451ea5952c7de34c6ef1c090d825cb62\transformed\rules\lib\META-INF\com.android.tools\r8-from-1.6.0\coroutines.pro
-# The proguard configuration file for the following section is C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\e6e59da4ff94e5027833b158670d0d4d\transformed\rules\lib\META-INF\com.android.tools\r8\coroutines.pro
+# End of content from C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\a1698a2700619183c3c374415805a11f\transformed\rules\lib\META-INF\com.android.tools\r8-from-1.6.0\coroutines.pro
+# The proguard configuration file for the following section is C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\c39894932e5588b050762374fa10f874\transformed\rules\lib\META-INF\com.android.tools\r8\coroutines.pro
 # When editing this file, update the following files as well:
 # - META-INF/proguard/coroutines.pro
 # - META-INF/com.android.tools/proguard/coroutines.pro
@@ -353,7 +374,7 @@
 
 # An annotation used for build tooling, won't be directly accessed.
 -dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
-# End of content from C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\e6e59da4ff94e5027833b158670d0d4d\transformed\rules\lib\META-INF\com.android.tools\r8\coroutines.pro
+# End of content from C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\c39894932e5588b050762374fa10f874\transformed\rules\lib\META-INF\com.android.tools\r8\coroutines.pro
 # The proguard configuration file for the following section is C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\fc54cadc8d8ab3ebd8740fca2d733ff3\transformed\jetified-play-services-tasks-18.1.0\proguard.txt
 
 
@@ -533,6 +554,41 @@
 }
 
 # End of content from C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\51ef94f406d6ace0b7d750460175df7e\transformed\rules\lib\META-INF\proguard\androidx-annotations.pro
+# The proguard configuration file for the following section is C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\f658ad8c6db25f9461d21650187e1081\transformed\rules\lib\META-INF\proguard\okio.pro
+# Animal Sniffer compileOnly dependency to ensure APIs are compatible with older versions of Java.
+-dontwarn org.codehaus.mojo.animal_sniffer.*
+
+# End of content from C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\f658ad8c6db25f9461d21650187e1081\transformed\rules\lib\META-INF\proguard\okio.pro
+# The proguard configuration file for the following section is C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\8976df26c3bc4f9216d85d2b959ecfa2\transformed\jetified-protolite-well-known-types-18.0.1\proguard.txt
+# Add project specific ProGuard rules here.
+# You can control the set of applied configuration files using the
+# proguardFiles setting in build.gradle.
+#
+# For more details, see
+#   http://developer.android.com/guide/developing/tools/proguard.html
+
+# If your project uses WebView with JS, uncomment the following
+# and specify the fully qualified class name to the JavaScript interface
+# class:
+#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
+#   public *;
+#}
+
+# Uncomment this to preserve the line number information for
+# debugging stack traces.
+#-keepattributes SourceFile,LineNumberTable
+
+# If you keep the line number information, uncomment this to
+# hide the original source file name.
+#-renamesourcefileattribute SourceFile
+
+# protobuf-javalite has a bug that requires this workaround rule
+# https://github.com/protocolbuffers/protobuf/issues/6463#issuecomment-553183215
+-keepclassmembers class * extends com.google.protobuf.GeneratedMessageLite {
+  <fields>;
+}
+
+# End of content from C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\8976df26c3bc4f9216d85d2b959ecfa2\transformed\jetified-protolite-well-known-types-18.0.1\proguard.txt
 # The proguard configuration file for the following section is <unknown>
 
 # End of content from <unknown>

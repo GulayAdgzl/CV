@@ -1,9 +1,9 @@
 <libraries>
   <library
       name=":@@:firebase_core::release"
-      jars="C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\8d7f0f2d55c256b418cd39d46097f092\transformed\out\jars\classes.jar;C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\8d7f0f2d55c256b418cd39d46097f092\transformed\out\jars\libs\R.jar"
+      jars="C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\2a5b0af3b4c8ba2b4534c57e5f5ebed7\transformed\out\jars\classes.jar;C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\2a5b0af3b4c8ba2b4534c57e5f5ebed7\transformed\out\jars\libs\R.jar"
       resolved="io.flutter.plugins.firebase.core:firebase_core:unspecified"
-      folder="C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\8d7f0f2d55c256b418cd39d46097f092\transformed\out"
+      folder="C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\2a5b0af3b4c8ba2b4534c57e5f5ebed7\transformed\out"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"

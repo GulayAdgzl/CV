@@ -548,9 +548,9 @@
       resolved="com.google.guava:listenablefuture:1.0"/>
   <library
       name=":@@:firebase_database::release"
-      jars="C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\514ee3b0cca121e478e9eeb5b25516f0\transformed\out\jars\classes.jar;C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\514ee3b0cca121e478e9eeb5b25516f0\transformed\out\jars\libs\R.jar"
+      jars="C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\00e998c2fab83b53cdfea4ee3764013c\transformed\out\jars\classes.jar;C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\00e998c2fab83b53cdfea4ee3764013c\transformed\out\jars\libs\R.jar"
       resolved="io.flutter.plugins.firebase.database:firebase_database:unspecified"
-      folder="C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\514ee3b0cca121e478e9eeb5b25516f0\transformed\out"
+      folder="C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\00e998c2fab83b53cdfea4ee3764013c\transformed\out"
       manifest="AndroidManifest.xml"
       resFolder="res"
       assetsFolder="assets"

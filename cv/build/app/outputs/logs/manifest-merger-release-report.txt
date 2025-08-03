@@ -2,6 +2,8 @@
 application
 INJECTED from C:\Users\System Bilgisayar\CV\cv\android\app\src\main\AndroidManifest.xml:2:5-33:19
 INJECTED from C:\Users\System Bilgisayar\CV\cv\android\app\src\main\AndroidManifest.xml:2:5-33:19
+MERGED from [:cloud_firestore] C:\Users\System Bilgisayar\CV\cv\build\cloud_firestore\intermediates\merged_manifest\release\AndroidManifest.xml:7:5-13:19
+MERGED from [:cloud_firestore] C:\Users\System Bilgisayar\CV\cv\build\cloud_firestore\intermediates\merged_manifest\release\AndroidManifest.xml:7:5-13:19
 MERGED from [:firebase_database] C:\Users\System Bilgisayar\CV\cv\build\firebase_database\intermediates\merged_manifest\release\AndroidManifest.xml:7:5-13:19
 MERGED from [:firebase_database] C:\Users\System Bilgisayar\CV\cv\build\firebase_database\intermediates\merged_manifest\release\AndroidManifest.xml:7:5-13:19
 MERGED from [:firebase_core] C:\Users\System Bilgisayar\CV\cv\build\firebase_core\intermediates\merged_manifest\release\AndroidManifest.xml:7:5-13:19
@@ -12,6 +14,8 @@ MERGED from [:url_launcher_android] C:\Users\System Bilgisayar\CV\cv\build\url_l
 MERGED from [:url_launcher_android] C:\Users\System Bilgisayar\CV\cv\build\url_launcher_android\intermediates\merged_manifest\release\AndroidManifest.xml:7:5-12:19
 MERGED from [com.google.firebase:firebase-database:21.0.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\46c6bf90c4b9bbf858b84dd34542489e\transformed\jetified-firebase-database-21.0.0\AndroidManifest.xml:25:5-36:19
 MERGED from [com.google.firebase:firebase-database:21.0.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\46c6bf90c4b9bbf858b84dd34542489e\transformed\jetified-firebase-database-21.0.0\AndroidManifest.xml:25:5-36:19
+MERGED from [com.google.firebase:firebase-firestore:25.1.4] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\183ccc4775f6503a77dc0be5a374b86c\transformed\jetified-firebase-firestore-25.1.4\AndroidManifest.xml:13:5-24:19
+MERGED from [com.google.firebase:firebase-firestore:25.1.4] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\183ccc4775f6503a77dc0be5a374b86c\transformed\jetified-firebase-firestore-25.1.4\AndroidManifest.xml:13:5-24:19
 MERGED from [com.google.firebase:firebase-common-ktx:21.0.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\6856e46dc3f1b585b66f0fb357718ac4\transformed\jetified-firebase-common-ktx-21.0.0\AndroidManifest.xml:8:5-16:19
 MERGED from [com.google.firebase:firebase-common-ktx:21.0.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\6856e46dc3f1b585b66f0fb357718ac4\transformed\jetified-firebase-common-ktx-21.0.0\AndroidManifest.xml:8:5-16:19
 MERGED from [androidx.window:window:1.2.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\e6ea119707449d1ba05a43d45dbd9825\transformed\jetified-window-1.2.0\AndroidManifest.xml:22:5-29:19
@@ -54,6 +58,7 @@ ADDED from C:\Users\System Bilgisayar\CV\cv\android\app\src\main\AndroidManifest
 INJECTED from C:\Users\System Bilgisayar\CV\cv\android\app\src\main\AndroidManifest.xml:1:1-45:12
 INJECTED from C:\Users\System Bilgisayar\CV\cv\android\app\src\main\AndroidManifest.xml:1:1-45:12
 INJECTED from C:\Users\System Bilgisayar\CV\cv\android\app\src\main\AndroidManifest.xml:1:1-45:12
+MERGED from [:cloud_firestore] C:\Users\System Bilgisayar\CV\cv\build\cloud_firestore\intermediates\merged_manifest\release\AndroidManifest.xml:2:1-15:12
 MERGED from [:firebase_database] C:\Users\System Bilgisayar\CV\cv\build\firebase_database\intermediates\merged_manifest\release\AndroidManifest.xml:2:1-15:12
 MERGED from [:firebase_core] C:\Users\System Bilgisayar\CV\cv\build\firebase_core\intermediates\merged_manifest\release\AndroidManifest.xml:2:1-15:12
 MERGED from [:fluttertoast] C:\Users\System Bilgisayar\CV\cv\build\fluttertoast\intermediates\merged_manifest\release\AndroidManifest.xml:2:1-7:12
@@ -62,6 +67,7 @@ MERGED from [:share_plus] C:\Users\System Bilgisayar\CV\cv\build\share_plus\inte
 MERGED from [:sqflite_android] C:\Users\System Bilgisayar\CV\cv\build\sqflite_android\intermediates\merged_manifest\release\AndroidManifest.xml:2:1-7:12
 MERGED from [:url_launcher_android] C:\Users\System Bilgisayar\CV\cv\build\url_launcher_android\intermediates\merged_manifest\release\AndroidManifest.xml:2:1-14:12
 MERGED from [com.google.firebase:firebase-database:21.0.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\46c6bf90c4b9bbf858b84dd34542489e\transformed\jetified-firebase-database-21.0.0\AndroidManifest.xml:15:1-38:12
+MERGED from [com.google.firebase:firebase-firestore:25.1.4] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\183ccc4775f6503a77dc0be5a374b86c\transformed\jetified-firebase-firestore-25.1.4\AndroidManifest.xml:2:1-26:12
 MERGED from [com.google.firebase:firebase-common-ktx:21.0.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\6856e46dc3f1b585b66f0fb357718ac4\transformed\jetified-firebase-common-ktx-21.0.0\AndroidManifest.xml:2:1-18:12
 MERGED from [androidx.browser:browser:1.8.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\c3283de6bcf5c458eb07588b1c5e78df\transformed\browser-1.8.0\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.window:window:1.2.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\e6ea119707449d1ba05a43d45dbd9825\transformed\jetified-window-1.2.0\AndroidManifest.xml:17:1-31:12
@@ -98,6 +104,8 @@ MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\System Bilgisayar\.
 MERGED from [androidx.window.extensions.core:core:1.0.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\5a4ad0034ef954d2d05e4c46f67b158b\transformed\jetified-core-1.0.0\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.annotation:annotation-experimental:1.4.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\40aac1e40064e1a62b39d35cca3a4ab4\transformed\jetified-annotation-experimental-1.4.0\AndroidManifest.xml:2:1-7:12
 MERGED from [com.getkeepsafe.relinker:relinker:1.4.5] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\91894b986b4202e7f12a2c9411fb1d62\transformed\jetified-relinker-1.4.5\AndroidManifest.xml:2:1-7:12
+MERGED from [io.grpc:grpc-android:1.62.2] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\8980534c6abd94b27c4a48ddfa2a0157\transformed\jetified-grpc-android-1.62.2\AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.firebase:protolite-well-known-types:18.0.1] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\8976df26c3bc4f9216d85d2b959ecfa2\transformed\jetified-protolite-well-known-types-18.0.1\AndroidManifest.xml:2:1-7:12
 	package
 		INJECTED from C:\Users\System Bilgisayar\CV\cv\android\app\src\main\AndroidManifest.xml
 	android:versionName
@@ -162,6 +170,8 @@ uses-sdk
 INJECTED from C:\Users\System Bilgisayar\CV\cv\android\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\System Bilgisayar\CV\cv\android\app\src\main\AndroidManifest.xml
 INJECTED from C:\Users\System Bilgisayar\CV\cv\android\app\src\main\AndroidManifest.xml
+MERGED from [:cloud_firestore] C:\Users\System Bilgisayar\CV\cv\build\cloud_firestore\intermediates\merged_manifest\release\AndroidManifest.xml:5:5-44
+MERGED from [:cloud_firestore] C:\Users\System Bilgisayar\CV\cv\build\cloud_firestore\intermediates\merged_manifest\release\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_database] C:\Users\System Bilgisayar\CV\cv\build\firebase_database\intermediates\merged_manifest\release\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_database] C:\Users\System Bilgisayar\CV\cv\build\firebase_database\intermediates\merged_manifest\release\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_core] C:\Users\System Bilgisayar\CV\cv\build\firebase_core\intermediates\merged_manifest\release\AndroidManifest.xml:5:5-44
@@ -178,6 +188,8 @@ MERGED from [:url_launcher_android] C:\Users\System Bilgisayar\CV\cv\build\url_l
 MERGED from [:url_launcher_android] C:\Users\System Bilgisayar\CV\cv\build\url_launcher_android\intermediates\merged_manifest\release\AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-database:21.0.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\46c6bf90c4b9bbf858b84dd34542489e\transformed\jetified-firebase-database-21.0.0\AndroidManifest.xml:18:5-44
 MERGED from [com.google.firebase:firebase-database:21.0.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\46c6bf90c4b9bbf858b84dd34542489e\transformed\jetified-firebase-database-21.0.0\AndroidManifest.xml:18:5-44
+MERGED from [com.google.firebase:firebase-firestore:25.1.4] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\183ccc4775f6503a77dc0be5a374b86c\transformed\jetified-firebase-firestore-25.1.4\AndroidManifest.xml:6:5-44
+MERGED from [com.google.firebase:firebase-firestore:25.1.4] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\183ccc4775f6503a77dc0be5a374b86c\transformed\jetified-firebase-firestore-25.1.4\AndroidManifest.xml:6:5-44
 MERGED from [com.google.firebase:firebase-common-ktx:21.0.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\6856e46dc3f1b585b66f0fb357718ac4\transformed\jetified-firebase-common-ktx-21.0.0\AndroidManifest.xml:5:5-44
 MERGED from [com.google.firebase:firebase-common-ktx:21.0.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\6856e46dc3f1b585b66f0fb357718ac4\transformed\jetified-firebase-common-ktx-21.0.0\AndroidManifest.xml:5:5-44
 MERGED from [androidx.browser:browser:1.8.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\c3283de6bcf5c458eb07588b1c5e78df\transformed\browser-1.8.0\AndroidManifest.xml:5:5-44
@@ -250,16 +262,24 @@ MERGED from [androidx.annotation:annotation-experimental:1.4.0] C:\Users\System 
 MERGED from [androidx.annotation:annotation-experimental:1.4.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\40aac1e40064e1a62b39d35cca3a4ab4\transformed\jetified-annotation-experimental-1.4.0\AndroidManifest.xml:5:5-44
 MERGED from [com.getkeepsafe.relinker:relinker:1.4.5] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\91894b986b4202e7f12a2c9411fb1d62\transformed\jetified-relinker-1.4.5\AndroidManifest.xml:5:5-43
 MERGED from [com.getkeepsafe.relinker:relinker:1.4.5] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\91894b986b4202e7f12a2c9411fb1d62\transformed\jetified-relinker-1.4.5\AndroidManifest.xml:5:5-43
+MERGED from [io.grpc:grpc-android:1.62.2] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\8980534c6abd94b27c4a48ddfa2a0157\transformed\jetified-grpc-android-1.62.2\AndroidManifest.xml:5:5-44
+MERGED from [io.grpc:grpc-android:1.62.2] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\8980534c6abd94b27c4a48ddfa2a0157\transformed\jetified-grpc-android-1.62.2\AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:protolite-well-known-types:18.0.1] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\8976df26c3bc4f9216d85d2b959ecfa2\transformed\jetified-protolite-well-known-types-18.0.1\AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:protolite-well-known-types:18.0.1] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\8976df26c3bc4f9216d85d2b959ecfa2\transformed\jetified-protolite-well-known-types-18.0.1\AndroidManifest.xml:5:5-44
 	android:targetSdkVersion
 		INJECTED from C:\Users\System Bilgisayar\CV\cv\android\app\src\main\AndroidManifest.xml
 	android:minSdkVersion
 		INJECTED from C:\Users\System Bilgisayar\CV\cv\android\app\src\main\AndroidManifest.xml
 service#com.google.firebase.components.ComponentDiscoveryService
-ADDED from [:firebase_database] C:\Users\System Bilgisayar\CV\cv\build\firebase_database\intermediates\merged_manifest\release\AndroidManifest.xml:8:9-12:19
+ADDED from [:cloud_firestore] C:\Users\System Bilgisayar\CV\cv\build\cloud_firestore\intermediates\merged_manifest\release\AndroidManifest.xml:8:9-12:19
+MERGED from [:firebase_database] C:\Users\System Bilgisayar\CV\cv\build\firebase_database\intermediates\merged_manifest\release\AndroidManifest.xml:8:9-12:19
+MERGED from [:firebase_database] C:\Users\System Bilgisayar\CV\cv\build\firebase_database\intermediates\merged_manifest\release\AndroidManifest.xml:8:9-12:19
 MERGED from [:firebase_core] C:\Users\System Bilgisayar\CV\cv\build\firebase_core\intermediates\merged_manifest\release\AndroidManifest.xml:8:9-12:19
 MERGED from [:firebase_core] C:\Users\System Bilgisayar\CV\cv\build\firebase_core\intermediates\merged_manifest\release\AndroidManifest.xml:8:9-12:19
 MERGED from [com.google.firebase:firebase-database:21.0.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\46c6bf90c4b9bbf858b84dd34542489e\transformed\jetified-firebase-database-21.0.0\AndroidManifest.xml:26:9-35:19
 MERGED from [com.google.firebase:firebase-database:21.0.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\46c6bf90c4b9bbf858b84dd34542489e\transformed\jetified-firebase-database-21.0.0\AndroidManifest.xml:26:9-35:19
+MERGED from [com.google.firebase:firebase-firestore:25.1.4] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\183ccc4775f6503a77dc0be5a374b86c\transformed\jetified-firebase-firestore-25.1.4\AndroidManifest.xml:14:9-23:19
+MERGED from [com.google.firebase:firebase-firestore:25.1.4] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\183ccc4775f6503a77dc0be5a374b86c\transformed\jetified-firebase-firestore-25.1.4\AndroidManifest.xml:14:9-23:19
 MERGED from [com.google.firebase:firebase-common-ktx:21.0.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\6856e46dc3f1b585b66f0fb357718ac4\transformed\jetified-firebase-common-ktx-21.0.0\AndroidManifest.xml:9:9-15:19
 MERGED from [com.google.firebase:firebase-common-ktx:21.0.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\6856e46dc3f1b585b66f0fb357718ac4\transformed\jetified-firebase-common-ktx-21.0.0\AndroidManifest.xml:9:9-15:19
 MERGED from [com.google.firebase:firebase-common:21.0.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\219d0582046176d5d6d0f0e8a1d2b3c4\transformed\jetified-firebase-common-21.0.0\AndroidManifest.xml:30:9-38:19
@@ -271,7 +291,13 @@ MERGED from [com.google.firebase:firebase-common:21.0.0] C:\Users\System Bilgisa
 	android:directBootAware
 		ADDED from [com.google.firebase:firebase-common:21.0.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\219d0582046176d5d6d0f0e8a1d2b3c4\transformed\jetified-firebase-common-21.0.0\AndroidManifest.xml:32:13-43
 	android:name
-		ADDED from [:firebase_database] C:\Users\System Bilgisayar\CV\cv\build\firebase_database\intermediates\merged_manifest\release\AndroidManifest.xml:8:18-89
+		ADDED from [:cloud_firestore] C:\Users\System Bilgisayar\CV\cv\build\cloud_firestore\intermediates\merged_manifest\release\AndroidManifest.xml:8:18-89
+meta-data#com.google.firebase.components:io.flutter.plugins.firebase.firestore.FlutterFirebaseFirestoreRegistrar
+ADDED from [:cloud_firestore] C:\Users\System Bilgisayar\CV\cv\build\cloud_firestore\intermediates\merged_manifest\release\AndroidManifest.xml:9:13-11:85
+	android:value
+		ADDED from [:cloud_firestore] C:\Users\System Bilgisayar\CV\cv\build\cloud_firestore\intermediates\merged_manifest\release\AndroidManifest.xml:11:17-82
+	android:name
+		ADDED from [:cloud_firestore] C:\Users\System Bilgisayar\CV\cv\build\cloud_firestore\intermediates\merged_manifest\release\AndroidManifest.xml:10:17-134
 meta-data#com.google.firebase.components:io.flutter.plugins.firebase.database.FlutterFirebaseAppRegistrar
 ADDED from [:firebase_database] C:\Users\System Bilgisayar\CV\cv\build\firebase_database\intermediates\merged_manifest\release\AndroidManifest.xml:9:13-11:85
 	android:value
@@ -322,10 +348,16 @@ ADDED from [:url_launcher_android] C:\Users\System Bilgisayar\CV\cv\build\url_la
 		ADDED from [:url_launcher_android] C:\Users\System Bilgisayar\CV\cv\build\url_launcher_android\intermediates\merged_manifest\release\AndroidManifest.xml:9:13-74
 uses-permission#android.permission.ACCESS_NETWORK_STATE
 ADDED from [com.google.firebase:firebase-database:21.0.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\46c6bf90c4b9bbf858b84dd34542489e\transformed\jetified-firebase-database-21.0.0\AndroidManifest.xml:22:5-79
+MERGED from [com.google.firebase:firebase-firestore:25.1.4] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\183ccc4775f6503a77dc0be5a374b86c\transformed\jetified-firebase-firestore-25.1.4\AndroidManifest.xml:10:5-79
+MERGED from [com.google.firebase:firebase-firestore:25.1.4] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\183ccc4775f6503a77dc0be5a374b86c\transformed\jetified-firebase-firestore-25.1.4\AndroidManifest.xml:10:5-79
+MERGED from [io.grpc:grpc-android:1.62.2] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\8980534c6abd94b27c4a48ddfa2a0157\transformed\jetified-grpc-android-1.62.2\AndroidManifest.xml:7:5-79
+MERGED from [io.grpc:grpc-android:1.62.2] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\8980534c6abd94b27c4a48ddfa2a0157\transformed\jetified-grpc-android-1.62.2\AndroidManifest.xml:7:5-79
 	android:name
 		ADDED from [com.google.firebase:firebase-database:21.0.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\46c6bf90c4b9bbf858b84dd34542489e\transformed\jetified-firebase-database-21.0.0\AndroidManifest.xml:22:22-76
 uses-permission#android.permission.INTERNET
 ADDED from [com.google.firebase:firebase-database:21.0.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\46c6bf90c4b9bbf858b84dd34542489e\transformed\jetified-firebase-database-21.0.0\AndroidManifest.xml:23:5-67
+MERGED from [com.google.firebase:firebase-firestore:25.1.4] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\183ccc4775f6503a77dc0be5a374b86c\transformed\jetified-firebase-firestore-25.1.4\AndroidManifest.xml:11:5-67
+MERGED from [com.google.firebase:firebase-firestore:25.1.4] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\183ccc4775f6503a77dc0be5a374b86c\transformed\jetified-firebase-firestore-25.1.4\AndroidManifest.xml:11:5-67
 	android:name
 		ADDED from [com.google.firebase:firebase-database:21.0.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\46c6bf90c4b9bbf858b84dd34542489e\transformed\jetified-firebase-database-21.0.0\AndroidManifest.xml:23:22-64
 meta-data#com.google.firebase.components:com.google.firebase.database.FirebaseDatabaseKtxRegistrar
@@ -340,6 +372,18 @@ ADDED from [com.google.firebase:firebase-database:21.0.0] C:\Users\System Bilgis
 		ADDED from [com.google.firebase:firebase-database:21.0.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\46c6bf90c4b9bbf858b84dd34542489e\transformed\jetified-firebase-database-21.0.0\AndroidManifest.xml:34:17-82
 	android:name
 		ADDED from [com.google.firebase:firebase-database:21.0.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\46c6bf90c4b9bbf858b84dd34542489e\transformed\jetified-firebase-database-21.0.0\AndroidManifest.xml:33:17-109
+meta-data#com.google.firebase.components:com.google.firebase.firestore.FirebaseFirestoreKtxRegistrar
+ADDED from [com.google.firebase:firebase-firestore:25.1.4] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\183ccc4775f6503a77dc0be5a374b86c\transformed\jetified-firebase-firestore-25.1.4\AndroidManifest.xml:17:13-19:85
+	android:value
+		ADDED from [com.google.firebase:firebase-firestore:25.1.4] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\183ccc4775f6503a77dc0be5a374b86c\transformed\jetified-firebase-firestore-25.1.4\AndroidManifest.xml:19:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-firestore:25.1.4] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\183ccc4775f6503a77dc0be5a374b86c\transformed\jetified-firebase-firestore-25.1.4\AndroidManifest.xml:18:17-122
+meta-data#com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar
+ADDED from [com.google.firebase:firebase-firestore:25.1.4] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\183ccc4775f6503a77dc0be5a374b86c\transformed\jetified-firebase-firestore-25.1.4\AndroidManifest.xml:20:13-22:85
+	android:value
+		ADDED from [com.google.firebase:firebase-firestore:25.1.4] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\183ccc4775f6503a77dc0be5a374b86c\transformed\jetified-firebase-firestore-25.1.4\AndroidManifest.xml:22:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-firestore:25.1.4] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\183ccc4775f6503a77dc0be5a374b86c\transformed\jetified-firebase-firestore-25.1.4\AndroidManifest.xml:21:17-111
 meta-data#com.google.firebase.components:com.google.firebase.ktx.FirebaseCommonLegacyRegistrar
 ADDED from [com.google.firebase:firebase-common-ktx:21.0.0] C:\Users\System Bilgisayar\.gradle\caches\8.9\transforms\6856e46dc3f1b585b66f0fb357718ac4\transformed\jetified-firebase-common-ktx-21.0.0\AndroidManifest.xml:12:13-14:85
 	android:value
